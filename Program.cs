@@ -18,6 +18,7 @@ namespace ServidorTestes
 
             api.AddAction("/usuarios/porcpf", Handlers.Usuarios.BuscarPorCPF.ProcessContext);
             api.AddAction("/categorias/listar", Handlers.Categorias.ListarCategorias.ProcessContext);
+            api.AddAction("/produtos/porcategoria", Handlers.Produtos.BuscarProdutosPorCategoria.ProcessContext);
 
             api.Listen();
         }
