@@ -9,10 +9,37 @@ namespace ServidorTestes.Banco
 {
     class PessoaFisica
     {
-        public int ID;
+        public long ID;
         public string CPF;
         public string Nome;
         public DateTime DataNascimento;
+
+        public bool AdicionarAoBanco()
+        {
+            try
+            {
+                using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+                connection.Open();
+
+                using MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "INSERT INTO usuario_pes_fisica (id_pes_fisica, cpf, nome, data_nascimento) " +
+                    "VALUES (@id, @cpf, @nome, @nascimento);";
+                command.Parameters.AddWithValue("@id", ID);
+                command.Parameters.AddWithValue("@cpf", CPF);
+                command.Parameters.AddWithValue("@nome", Nome);
+                command.Parameters.AddWithValue("@nascimento", DataNascimento);
+
+                if (command.ExecuteNonQuery() != 1)
+                    return false;
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
 
         public static PessoaFisica BuscarPeloCPF(string cpf)
         {
