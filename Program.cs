@@ -17,6 +17,7 @@ namespace ServidorTestes
             APIServer api = new APIServer(1890);
 
             api.AddAction("/usuarios/porcpf", Handlers.Usuarios.BuscarPorCPF.ProcessContext);
+            api.AddAction("/categorias/listar", Handlers.Categorias.ListarCategorias.ProcessContext);
 
             api.Listen();
         }
