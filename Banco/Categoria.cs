@@ -12,6 +12,30 @@ namespace ServidorTestes.Banco
         public long ID;
         public string Nome;
 
+        public bool AdicionarAoBanco()
+        {
+            try
+            {
+                using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+                connection.Open();
+
+                using MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "INSERT INTO categoria (nome) VALUES (@nome);";
+                command.Parameters.AddWithValue("@nome", Nome);
+
+                if (command.ExecuteNonQuery() != 1)
+                    return false;
+
+                ID = command.LastInsertedId;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
         public static List<Categoria> BuscarTodas()
         {
             using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
