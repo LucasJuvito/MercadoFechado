@@ -29,6 +29,8 @@ namespace ServidorTestes
 
             api.AddAction("/anuncio/criar", Handlers.Anuncios.CriarAnuncio.ProcessContext);
 
+            api.AddAction("/endereco/criar", Handlers.Enderecos.CriarEndereco.ProcessContext);
+
             api.Listen();
         }
     }
