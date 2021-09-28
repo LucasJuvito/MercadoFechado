@@ -9,13 +9,43 @@ namespace ServidorTestes.Banco
 {
     class Produto
     {
-        public int ID;
+        public long ID;
         public string Nome;
         public string Marca;
         public string Fabricante;
         public int Ano;
-        public int IDCategoria;
+        public long IDCategoria;
         public string Descricao;
+
+        public bool AdicionarAoBanco()
+        {
+            try
+            {
+                using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+                connection.Open();
+
+                using MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, descricao) " +
+                    "VALUES (@nome, @marca, @fabricante, @ano, @id_categoria, @descricao);";
+                command.Parameters.AddWithValue("@nome", Nome);
+                command.Parameters.AddWithValue("@marca", Marca);
+                command.Parameters.AddWithValue("@fabricante", Fabricante);
+                command.Parameters.AddWithValue("@ano", Ano);
+                command.Parameters.AddWithValue("@id_categoria", IDCategoria);
+                command.Parameters.AddWithValue("@descricao", Descricao);
+
+                if (command.ExecuteNonQuery() != 1)
+                    return false;
+
+                ID = command.LastInsertedId;
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
 
         public static List<Produto> BuscarPorCategoria(string nome)
         {

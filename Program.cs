@@ -22,7 +22,9 @@ namespace ServidorTestes
             api.AddAction("/usuarios/criar/pessoafisica", Handlers.Usuarios.CriarPessoaFisica.ProcessContext);
 
             api.AddAction("/categorias/listar", Handlers.Categorias.ListarCategorias.ProcessContext);
+
             api.AddAction("/produtos/porcategoria", Handlers.Produtos.BuscarProdutosPorCategoria.ProcessContext);
+            api.AddAction("/produtos/criar", Handlers.Produtos.CriarProduto.ProcessContext);
 
             api.Listen();
         }

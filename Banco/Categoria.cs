@@ -9,7 +9,7 @@ namespace ServidorTestes.Banco
 {
     class Categoria
     {
-        public int ID;
+        public long ID;
         public string Nome;
 
         public static List<Categoria> BuscarTodas()
@@ -35,6 +35,28 @@ namespace ServidorTestes.Banco
                 };
                 ret.Add(categoria);
             }
+            return ret;
+        }
+
+        public static Categoria BuscarID(string categoria)
+        {
+            using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+            connection.Open();
+
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT id_categoria FROM categoria WHERE nome = @nome;";
+            command.Parameters.AddWithValue("@nome", categoria);
+
+            using MySqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+
+            if (!reader.HasRows)
+                return null;
+
+            Categoria ret = new Categoria()
+            {
+                ID = reader.GetInt64(0)
+            };
             return ret;
         }
     }
