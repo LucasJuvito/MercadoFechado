@@ -27,6 +27,8 @@ namespace ServidorTestes
             api.AddAction("/produtos/porcategoria", Handlers.Produtos.BuscarProdutosPorCategoria.ProcessContext);
             api.AddAction("/produtos/criar", Handlers.Produtos.CriarProduto.ProcessContext);
 
+            api.AddAction("/anuncio/criar", Handlers.Anuncios.CriarAnuncio.ProcessContext);
+
             api.Listen();
         }
     }
