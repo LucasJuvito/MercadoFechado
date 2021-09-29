@@ -31,6 +31,8 @@ namespace ServidorTestes
 
             api.AddAction("/endereco/criar", Handlers.Enderecos.CriarEndereco.ProcessContext);
 
+            api.AddAction("/comentario/criar", Handlers.Comentarios.CriarComentario.ProcessContext);
+
             api.Listen();
         }
     }
