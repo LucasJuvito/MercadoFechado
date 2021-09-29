@@ -33,6 +33,8 @@ namespace ServidorTestes
 
             api.AddAction("/comentario/criar", Handlers.Comentarios.CriarComentario.ProcessContext);
 
+            api.AddAction("/avaliacao/criar", Handlers.Avaliacoes.CriarAvaliacao.ProcessContext);
+
             api.Listen();
         }
     }
