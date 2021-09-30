@@ -35,6 +35,8 @@ namespace ServidorTestes
 
             api.AddAction("/avaliacao/criar", Handlers.Avaliacoes.CriarAvaliacao.ProcessContext);
 
+            api.AddAction("/venda/criar", Handlers.Vendas.CriarVenda.ProcessContext);
+
             api.Listen();
         }
     }
