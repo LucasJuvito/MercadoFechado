@@ -15,7 +15,6 @@ namespace ServidorTestes.Banco
         public long IDProduto;
         public long IDVendedor;
 
-
         public bool AdicionarAoBanco()
         {
             try

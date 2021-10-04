@@ -14,7 +14,6 @@ namespace ServidorTestes.Banco
         public long IDUserComum;
         public long IDAnuncio;
 
-
         public bool AdicionarAoBanco()
         {
             try
@@ -42,5 +41,33 @@ namespace ServidorTestes.Banco
             }
         }
 
+        public static List<Comentario> BuscarComentariosPorAnuncio(long idAnuncio)
+        {
+            using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+            connection.Open();
+
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT id_comentario, id_user_comum, descricao FROM comentarios WHERE id_anuncio = @id";
+            command.Parameters.AddWithValue("@id", idAnuncio);
+
+            using MySqlDataReader reader = command.ExecuteReader();
+            List<Comentario> ret = new List<Comentario>();
+
+            while (reader.Read())
+            {
+                if (!reader.HasRows)
+                    return ret;
+
+                Comentario comentario = new Comentario
+                {
+                    ID = reader.GetInt64(0),
+                    IDUserComum = reader.GetInt64(1),
+                    Descricao = reader.GetString(2),
+                    IDAnuncio = idAnuncio
+                };
+                ret.Add(comentario);
+            }
+            return ret;
+        }
     }
 }

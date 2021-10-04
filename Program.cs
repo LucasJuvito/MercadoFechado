@@ -32,6 +32,7 @@ namespace ServidorTestes
             api.AddAction("/endereco/porproprietario", Handlers.Enderecos.BuscarPorProprietario.ProcessContext);
 
             api.AddAction("/comentario/criar", Handlers.Comentarios.CriarComentario.ProcessContext);
+            api.AddAction("/comentario/listar/poranuncio", Handlers.Comentarios.ListarComentariosPorAnuncio.ProcessContext);
 
             api.AddAction("/avaliacao/criar", Handlers.Avaliacoes.CriarAvaliacao.ProcessContext);
 

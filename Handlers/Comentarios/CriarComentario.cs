@@ -36,7 +36,7 @@ namespace ServidorTestes.Handlers.Comentarios
             CriarComentarioResponse response = new CriarComentarioResponse() {
                 Comentario = comentario,
                 Success = true,
-                Message = "Anúncio adicionado com sucesso!"
+                Message = "Comentário adicionado com sucesso!"
             };
             writer.WriteLine(response.ToJSON());
         }
