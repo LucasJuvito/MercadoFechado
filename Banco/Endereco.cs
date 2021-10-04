@@ -51,7 +51,7 @@ namespace ServidorTestes.Banco
             }
         }
 
-        /* public static List<Produto> BuscarPorProprietario(long id)
+        public static List<Endereco> BuscarPorProprietario(long id)
         {
             using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
             connection.Open();
@@ -78,12 +78,12 @@ namespace ServidorTestes.Banco
                     Bairro = reader.GetString(4),
                     Quadra = reader.GetString(5),
                     Numero = reader.GetInt32(6),
-                    Complemento = reader.GetString(7),
+                    Complemento = reader.IsDBNull(7) ? null : reader.GetString(7),
                     IDProprietario = reader.GetInt64(8)
                 };
                 ret.Add(endereco);
             }
             return ret;
-        }*/
+        }
     }
 }

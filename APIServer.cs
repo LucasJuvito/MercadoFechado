@@ -59,7 +59,7 @@ namespace ServidorTestes
 
             if (!Handlers.ContainsKey(handler))
             {
-                writer.Write(new BaseResponse() { Message = "Invalid handler" }.ToJSON(), handler);
+                writer.Write(new BaseResponse() { Message = "Invalid handler" }.ToJSON());
                 return;
             }
 

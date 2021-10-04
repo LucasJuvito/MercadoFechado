@@ -13,7 +13,6 @@ namespace ServidorTestes
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(JsonConvert.SerializeObject(DateTime.Now));
             Global.Load();
 
             APIServer api = new APIServer(1890);
@@ -30,6 +29,7 @@ namespace ServidorTestes
             api.AddAction("/anuncio/criar", Handlers.Anuncios.CriarAnuncio.ProcessContext);
 
             api.AddAction("/endereco/criar", Handlers.Enderecos.CriarEndereco.ProcessContext);
+            api.AddAction("/endereco/porproprietario", Handlers.Enderecos.BuscarPorProprietario.ProcessContext);
 
             api.AddAction("/comentario/criar", Handlers.Comentarios.CriarComentario.ProcessContext);
 
