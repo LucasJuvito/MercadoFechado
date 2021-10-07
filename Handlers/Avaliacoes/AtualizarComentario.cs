@@ -1,29 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Net;
 using ServidorTestes.Banco;
 using ServidorTestes.Requests;
 using ServidorTestes.Responses;
 
-namespace ServidorTestes.Handlers.Comentarios
+namespace ServidorTestes.Handlers.Avaliacoes
 {
-    class ListarComentariosPorAnuncio
+    class AtualizarComentario
     {
         public static void ProcessContext(HttpListenerContext context, StreamWriter writer, StreamReader reader)
         {
             string jsonStr = reader.ReadToEnd();
-            ListarComentariosPorAnuncioRequest request = ListarComentariosPorAnuncioRequest.FromJSON(jsonStr);
+            AtualizarComentarioAvaliacaoRequest request = AtualizarComentarioAvaliacaoRequest.FromJSON(jsonStr);
+
             if (request == null || !request.IsValid())
             {
                 writer.WriteLine(new BaseResponse() { Message = "Pedido inválido!" }.ToJSON());
                 return;
             }
 
-            List<Comentario> comentarios = Comentario.BuscarComentariosPorAnuncio(request.IDAnuncio.Value);
-            ListarComentariosPorAnuncioResponse response = new ListarComentariosPorAnuncioResponse() {
-                Comentarios = comentarios,
+            if (!Avaliacao.AtualizarComentario(request.IDVenda.Value, request.Comentario))
+            {
+                writer.WriteLine(new BaseResponse() { Message = "Não foi possível atualizar avaliação no BD!" }.ToJSON());
+                return;
+            }
+
+            BaseResponse response = new BaseResponse()
+            {
                 Success = true,
-                Message = "Dados obtidos com sucesso!"
+                Message = "Comentário atualizado com sucesso!"
             };
             writer.WriteLine(response.ToJSON());
         }

@@ -20,23 +20,31 @@ namespace ServidorTestes
             api.AddAction("/usuarios/porcpf", Handlers.Usuarios.BuscarPorCPF.ProcessContext);
             api.AddAction("/usuarios/criar/pessoafisica", Handlers.Usuarios.CriarPessoaFisica.ProcessContext);
 
+            api.AddAction("/categorias/criar", Handlers.Categorias.CriarCategoria.ProcessContext);
             api.AddAction("/categorias/listar", Handlers.Categorias.ListarCategorias.ProcessContext);
-            api.AddAction("/categoria/criar", Handlers.Categorias.CriarCategoria.ProcessContext);
+            api.AddAction("/categorias/atualizar/nome", Handlers.Categorias.AtualizarCategoria.ProcessContext);
 
-            api.AddAction("/produtos/porcategoria", Handlers.Produtos.BuscarProdutosPorCategoria.ProcessContext);
             api.AddAction("/produtos/criar", Handlers.Produtos.CriarProduto.ProcessContext);
+            api.AddAction("/produtos/listar/porcategoria", Handlers.Produtos.BuscarProdutosPorCategoria.ProcessContext);
 
-            api.AddAction("/anuncio/criar", Handlers.Anuncios.CriarAnuncio.ProcessContext);
+            api.AddAction("/anuncios/criar", Handlers.Anuncios.CriarAnuncio.ProcessContext);
+            api.AddAction("/anuncios/atualizar/titulo", Handlers.Anuncios.AtualizarTitulo.ProcessContext);
+            api.AddAction("/anuncios/atualizar/descricao", Handlers.Anuncios.AtualizarDescricao.ProcessContext);
+            api.AddAction("/anuncios/listar/porcategoria", Handlers.Anuncios.ListarAnuncios.ProcessContext);
 
-            api.AddAction("/endereco/criar", Handlers.Enderecos.CriarEndereco.ProcessContext);
-            api.AddAction("/endereco/porproprietario", Handlers.Enderecos.BuscarPorProprietario.ProcessContext);
+            api.AddAction("/enderecos/criar", Handlers.Enderecos.CriarEndereco.ProcessContext);
+            api.AddAction("/enderecos/listar/porproprietario", Handlers.Enderecos.BuscarPorProprietario.ProcessContext);
 
-            api.AddAction("/comentario/criar", Handlers.Comentarios.CriarComentario.ProcessContext);
-            api.AddAction("/comentario/listar/poranuncio", Handlers.Comentarios.ListarComentariosPorAnuncio.ProcessContext);
+            api.AddAction("/comentarios/criar", Handlers.Comentarios.CriarComentario.ProcessContext);
+            api.AddAction("/comentarios/listar/poranuncio", Handlers.Comentarios.ListarComentarios.ProcessContext);
 
-            api.AddAction("/avaliacao/criar", Handlers.Avaliacoes.CriarAvaliacao.ProcessContext);
+            api.AddAction("/avaliacoes/criar", Handlers.Avaliacoes.CriarAvaliacao.ProcessContext);
+            api.AddAction("/avaliacoes/listar", Handlers.Avaliacoes.ListarAvaliacoes.ProcessContext);
+            api.AddAction("/avaliacoes/atualizar/pontuacao", Handlers.Avaliacoes.AtualizarPontuacao.ProcessContext);
+            api.AddAction("/avaliacoes/atualizar/comentario", Handlers.Avaliacoes.AtualizarComentario.ProcessContext);
 
-            api.AddAction("/venda/criar", Handlers.Vendas.CriarVenda.ProcessContext);
+            api.AddAction("/vendas/criar", Handlers.Vendas.CriarVenda.ProcessContext);
+            api.AddAction("/vendas/listar/poranuncio", Handlers.Vendas.ListarVendasPorAnuncio.ProcessContext);
 
             api.Listen();
         }

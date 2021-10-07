@@ -36,6 +36,30 @@ namespace ServidorTestes.Banco
             }
         }
 
+        public static bool AtualizarNome(long id, string nome)
+        {
+            try
+            {
+                using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+                connection.Open();
+
+                using MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "UPDATE categoria SET nome = @nome WHERE id_categoria = @id;";
+                command.Parameters.AddWithValue("@nome", nome);
+                command.Parameters.AddWithValue("@id", id);
+
+                if (command.ExecuteNonQuery() != 1)
+                    return false;
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
         public static List<Categoria> BuscarTodas()
         {
             using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);

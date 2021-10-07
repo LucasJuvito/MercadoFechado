@@ -13,9 +13,6 @@ namespace ServidorTestes.Handlers.Vendas
         {
             string jsonStr = reader.ReadToEnd();
             CriarVendaRequest request = CriarVendaRequest.FromJSON(jsonStr);
-
-            Console.WriteLine(request.Data);
-
             if (request == null || !request.IsValid())
             {
                 writer.WriteLine(new BaseResponse() { Message = "Pedido inválido!" }.ToJSON());
@@ -25,11 +22,11 @@ namespace ServidorTestes.Handlers.Vendas
             Venda venda = new Venda
             {
                 Data = (DateTime)request.Data,
-                Vendedor = request.Vendedor,
-                Comprador = request.Comprador,
+                IDVendedor = request.Vendedor,
+                IDComprador = request.Comprador,
                 Valor = request.Valor,
-                Endereco = request.Endereco,
-                Anuncio = request.Anuncio
+                IDEndereco = request.Endereco,
+                IDAnuncio = request.Anuncio
             };
 
             if(!venda.AdicionarAoBanco())

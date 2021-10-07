@@ -7,12 +7,12 @@ using ServidorTestes.Responses;
 
 namespace ServidorTestes.Handlers.Avaliacoes
 {
-    class CriarAvaliacao
+    class AtualizarPontuacao
     {
         public static void ProcessContext(HttpListenerContext context, StreamWriter writer, StreamReader reader)
         {
             string jsonStr = reader.ReadToEnd();
-            CriarAvaliacaoRequest request = CriarAvaliacaoRequest.FromJSON(jsonStr);
+            AtualizarPontuacaoAvaliacaoRequest request = AtualizarPontuacaoAvaliacaoRequest.FromJSON(jsonStr);
 
             if (request == null || !request.IsValid())
             {
@@ -20,23 +20,16 @@ namespace ServidorTestes.Handlers.Avaliacoes
                 return;
             }
 
-            Avaliacao avaliacao = new Avaliacao
+            if (!Avaliacao.AtualizarPontuacao(request.IDVenda.Value, request.Pontuacao.Value))
             {
-                IDVenda = request.IDVenda,
-                Pontuacao = request.Pontuacao,
-                Comentario = request.Comentario
-            };
-
-            if(!avaliacao.AdicionarAoBanco())
-            {
-                writer.WriteLine(new BaseResponse() { Message = "Não foi possível adicionar avaliação ao BD!" }.ToJSON());
+                writer.WriteLine(new BaseResponse() { Message = "Não foi possível atualizar avaliação no BD!" }.ToJSON());
                 return;
             }
 
-            CriarAvaliacaoResponse response = new CriarAvaliacaoResponse() {
-                Avaliacao = avaliacao,
+            BaseResponse response = new BaseResponse()
+            {
                 Success = true,
-                Message = "Avaliação adicionada com sucesso!"
+                Message = "Pontuação atualizada com sucesso!"
             };
             writer.WriteLine(response.ToJSON());
         }
