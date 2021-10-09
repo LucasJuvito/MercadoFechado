@@ -12,7 +12,11 @@
 a{
   text-decoration: none;
 }
-   
+
+.invalido {
+  background-color: rgba(80, 0, 0, 0.479);
+}
+
 /* esconde as ancoras da tela */
 a.links{
   display: none;

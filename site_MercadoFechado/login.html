@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- definição de caracteres padrão -->
+  <meta charset="UTF-8">
+  <!-- compatibilidade com o Internet Explorer -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsividade mobile padrão -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Linkando CSS local-->
+  <link rel="stylesheet" type="text/css" href="css/login.css" />
+  <!--Linkando fonts do Google-->
+  <link href='http://fonts.googleapis.com/css?family=Signika+Negative:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Kameron:400,700' rel='stylesheet' type='text/css'>
+  <title>Login e Registro </title>
+</head>
+<body>
+  <div class="container" >
+    <a class="links" id="paracadastro"></a>
+    <a class="links" id="paralogin"></a>
+    <a class="links" id="paracadastrocnpj"></a>
+
+    <div class="content">   
+         
+      <!--FORMULÁRIO DE LOGIN-->
+      <div id="login" >
+        <h1>Login</h1> 
+        <p> 
+          <label for="nome_login">Usuário</label>
+          <input id="nome_login" name="nome_login" required="required" type="text" placeholder="ex. usuario"/>
+        </p>
+          
+        <p> 
+          <label for="senha_login">Senha</label>
+          <input id="senha_login" name="senha_login" required="required" type="password" placeholder="ex. senha" /> 
+        </p>
+        
+        <p id="erro_login"></p>
+        <p> 
+          <input type="submit" value="Logar" onclick="TentarLogar();"/> 
+        </p>
+          
+        <p class="link">
+          Ainda não tem conta?
+          <a href="#cadastro">Cadastre-se</a>
+        </p>
+      </div>
+ 
+      <!--FORMULÁRIO DE CADASTRO Pessoa Física -->
+      <div id="cadastro">
+        <form method="post" action=""> 
+          <h1>Cadastro</h1> 
+           
+          <p> 
+            <label for="nome_cad">Seu nome</label>
+            <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="nome" />
+          </p>
+           
+          <p> 
+            <label for="cpf_cad">Seu CPF</label>
+            <input id="cpf_cad" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" title="Digite um CPF no formato: xxx.xxx.xxx-xx" name="cpf_cad" required="required" type="text" placeholder="000.000.000-00"/> 
+          </p>
+
+          <p> 
+            <label for="nome_user_cad">Seu nome de usuário</label>
+            <input id="nome_user_cad" name="nome_user_cad" required="required" type="text" placeholder="nome" />
+          </p>
+           
+          <p> 
+            <label for="senha_cad">Sua senha</label>
+            <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="ex. 1234"/>
+          </p>
+           
+          <p> 
+            <input type="submit" value="Cadastrar"/> 
+          </p>
+           
+          <p class="link">  
+            Já tem conta?
+            <a href="#login">Login</a>
+            &nbsp;&nbsp;É empresa?
+            <a href="#cadastrocnpj">Cadastro empresa</a>
+          </p>
+
+        </form>
+      </div>
+
+      <!--FORMULÁRIO DE CADASTRO Pessoa Jurídica-->
+      <div id="cadastrocnpj">
+        <form method="post" action=""> 
+          <h1>Cadastro Empresa</h1> 
+           
+          <p> 
+            <label for="nome_cad">Nome Fantasia</label>
+            <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="nome" />
+          </p>
+           
+          <p> 
+            <label for="cpf_cad">Seu CNPJ</label>
+            <input id="cpf_cad" pattern="\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}" title="Digite um CNPJ no formato: xx.xxx.xxx/xxxx-xx" name="cpf_cad" required="required" type="text" placeholder="00.000.000/0000-00"/> 
+          </p>
+
+          <p> 
+            <label for="nome_user_cad">Seu nome de usuário</label>
+            <input id="nome_user_cad" name="nome_user_cad" required="required" type="text" placeholder="nome" />
+          </p>
+           
+          <p> 
+            <label for="senha_cad">Sua senha</label>
+            <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="ex. 1234"/>
+          </p>
+
+          
+          <h2>Endereço Sede</h2> 
+
+          <p> 
+            <label for="cep_cad">CEP</label>
+            <input id="cep_cad" pattern="\d{5}-\d{3}" title="Digite um CEP no formato: xxxxx-xxx" name="cep_cad" required="required" type="text" placeholder="00000-000" />
+          </p>
+
+          <p> 
+            <label for="estado_cad">Unidade da Federação / estado </label>
+            <input id="estado_cad" name="estado_cad" required="required" type="text" placeholder="Goiás" />
+          </p>
+
+          <p> 
+            <label for="cidade_cad">Cidade </label>
+            <input id="cidade_cad" name="cidade_cad" required="required" type="text" placeholder="Águas Lindas de Goiás" />
+          </p>
+
+          <p> 
+            <label for="bairro_cad">Bairro </label>
+            <input id="bairro_cad" name="bairro_cad" required="required" type="text" placeholder="Perola" />
+          </p>
+
+          <p> 
+            <label for="quadra_cad">Quadra </label>
+            <input id="quadra_cad" name="quadra_cad" required="required" type="text" placeholder="qd 1" />
+          </p>
+
+          <p> 
+            <label for="numero_cad">Número </label>
+            <input id="numero_cad" name="numero_cad" required="required" type="number" placeholder="1" />
+          </p>
+
+          <p> 
+            <label for="complemento_cad">Complemento </label>
+            <input id="complemento_cad" name="complemento_cad" type="text" placeholder="portão branco" />
+          </p>
+           
+          <p> 
+            <input type="submit" value="Cadastrar"/> 
+          </p>
+           
+          <p class="link">  
+            Já tem conta?
+            <a href="#login"> Ir para Login </a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div> 
+  <!-- Linkando fonte do google -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/api/login.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
