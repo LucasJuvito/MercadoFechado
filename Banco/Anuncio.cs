@@ -10,6 +10,7 @@ namespace ServidorTestes.Banco
     class Anuncio
     {
         public long ID;
+        public double Valor;
         public string Titulo;
         public string Descricao;
         public long IDProduto;
@@ -97,7 +98,7 @@ namespace ServidorTestes.Banco
             connection.Open();
 
             using MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT id_anuncio, titulo, anuncio.descricao, produto.id_produto, id_vendedor " +
+            command.CommandText = "SELECT id_anuncio, valor, titulo, anuncio.descricao, produto.id_produto, id_vendedor " +
                 "FROM anuncio " +
                 "JOIN produto " +
                 "ON anuncio.id_produto = produto.id_produto " +
@@ -115,13 +116,45 @@ namespace ServidorTestes.Banco
                 Anuncio anuncio = new Anuncio
                 {
                     ID = reader.GetInt64(0),
-                    Titulo = reader.GetString(1),
-                    Descricao = reader.GetString(2),
-                    IDProduto = reader.GetInt64(3),
-                    IDVendedor = reader.GetInt64(4)
+                    Valor = reader.GetDouble(1),
+                    Titulo = reader.GetString(2),
+                    Descricao = reader.GetString(3),
+                    IDProduto = reader.GetInt64(4),
+                    IDVendedor = reader.GetInt64(5)
                 };
                 ret.Add(anuncio);
             }
+            return ret;
+        }
+
+        public static Anuncio BuscarPorID(long id)
+        {
+            using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+            connection.Open();
+
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT titulo, valor, anuncio.descricao, produto.id_produto, id_vendedor " +
+                "FROM anuncio " +
+                "JOIN produto " +
+                "ON anuncio.id_produto = produto.id_produto " +
+                "WHERE id_anuncio = @id LIMIT 1;";
+            command.Parameters.AddWithValue("@id", id);
+
+            using MySqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+
+            if (!reader.HasRows)
+                return null;
+
+            Anuncio ret = new Anuncio()
+            {
+                ID = id,
+                Titulo = reader.GetString(0),
+                Valor = reader.GetDouble(1),
+                Descricao = reader.GetString(2),
+                IDProduto = reader.GetInt64(3),
+                IDVendedor = reader.GetInt64(4)
+            };
             return ret;
         }
     }

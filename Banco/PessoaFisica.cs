@@ -65,5 +65,30 @@ namespace ServidorTestes.Banco
             };
             return ret;
         }
+
+        public static PessoaFisica BuscarPeloID(long id)
+        {
+            using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+            connection.Open();
+
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT cpf, nome, data_nascimento FROM usuario_pes_fisica WHERE id_pes_fisica = @id;";
+            command.Parameters.AddWithValue("@id", id);
+
+            using MySqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+
+            if (!reader.HasRows)
+                return null;
+
+            PessoaFisica ret = new PessoaFisica()
+            {
+                ID = id,
+                CPF = reader.GetString(0),
+                Nome = reader.GetString(1),
+                DataNascimento = reader.GetDateTime(2)
+            };
+            return ret;
+        }
     }
 }

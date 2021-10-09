@@ -10,7 +10,7 @@ namespace ServidorTestes.Banco
     class Venda
     {
         public long ID;
-        public int Valor;
+        public double Valor;
         public DateTime Data;
         public long IDAnuncio;
         public long IDEndereco;
@@ -69,7 +69,7 @@ namespace ServidorTestes.Banco
                 Venda venda = new Venda
                 {
                     ID = reader.GetInt64(0),
-                    Valor = reader.GetInt32(1),
+                    Valor = reader.GetDouble(1),
                     Data = reader.GetDateTime(2),
                     IDEndereco = reader.GetInt64(3),
                     IDVendedor = reader.GetInt64(4),

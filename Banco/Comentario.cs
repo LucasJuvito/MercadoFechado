@@ -69,5 +69,29 @@ namespace ServidorTestes.Banco
             }
             return ret;
         }
+
+        public static bool AtualizarDescricao(long id, string descricao)
+        {
+            try
+            {
+                using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+                connection.Open();
+
+                using MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "UPDATE comentarios SET descricao = @descricao WHERE id_comentario = @id;";
+                command.Parameters.AddWithValue("@descricao", descricao);
+                command.Parameters.AddWithValue("@id", id);
+
+                if (command.ExecuteNonQuery() != 1)
+                    return false;
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
     }
 }

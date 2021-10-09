@@ -10,7 +10,7 @@ namespace ServidorTestes.Banco
     class Avaliacao
     {
         public long IDVenda;
-        public int Pontuacao;
+        public double Pontuacao;
         public string Comentario;
 
         public bool AdicionarAoBanco()
@@ -109,7 +109,7 @@ namespace ServidorTestes.Banco
 
                 Avaliacao avaliacao = new Avaliacao
                 {
-                    Pontuacao = reader.GetInt32(0),
+                    Pontuacao = reader.GetDouble(0),
                     Comentario = reader.GetString(1),
                     IDVenda = reader.GetInt64(2)
                 };

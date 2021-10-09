@@ -17,6 +17,7 @@ namespace ServidorTestes
 
             APIServer api = new APIServer(1890);
 
+            api.AddAction("/usuarios/porid", Handlers.Usuarios.BuscarPorID.ProcessContext);
             api.AddAction("/usuarios/porcpf", Handlers.Usuarios.BuscarPorCPF.ProcessContext);
             api.AddAction("/usuarios/criar/pessoafisica", Handlers.Usuarios.CriarPessoaFisica.ProcessContext);
 
@@ -28,9 +29,10 @@ namespace ServidorTestes
             api.AddAction("/produtos/listar/porcategoria", Handlers.Produtos.BuscarProdutosPorCategoria.ProcessContext);
 
             api.AddAction("/anuncios/criar", Handlers.Anuncios.CriarAnuncio.ProcessContext);
+            api.AddAction("/anuncios/buscar/porid", Handlers.Anuncios.BuscarPorID.ProcessContext);
             api.AddAction("/anuncios/atualizar/titulo", Handlers.Anuncios.AtualizarTitulo.ProcessContext);
-            api.AddAction("/anuncios/atualizar/descricao", Handlers.Anuncios.AtualizarDescricao.ProcessContext);
             api.AddAction("/anuncios/listar/porcategoria", Handlers.Anuncios.ListarAnuncios.ProcessContext);
+            api.AddAction("/anuncios/atualizar/descricao", Handlers.Anuncios.AtualizarDescricao.ProcessContext);
 
             api.AddAction("/enderecos/criar", Handlers.Enderecos.CriarEndereco.ProcessContext);
             api.AddAction("/enderecos/listar/porproprietario", Handlers.Enderecos.BuscarPorProprietario.ProcessContext);
@@ -46,6 +48,7 @@ namespace ServidorTestes
             api.AddAction("/vendas/criar", Handlers.Vendas.CriarVenda.ProcessContext);
             api.AddAction("/vendas/listar/poranuncio", Handlers.Vendas.ListarVendasPorAnuncio.ProcessContext);
 
+            api.AddAction("/login/logar", Handlers.Login.LogarUsuario.ProcessContext);
             api.Listen();
         }
     }

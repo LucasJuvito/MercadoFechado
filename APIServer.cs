@@ -54,6 +54,10 @@ namespace ServidorTestes
 
         private void ProcessContext(HttpListenerContext context, StreamWriter writer, StreamReader reader)
         {
+            context.Response.AddHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
+            context.Response.AddHeader("Access-Control-Allow-Methods", "GET, POST");
+            context.Response.AddHeader("Access-Control-Max-Age", "1728000");
+            context.Response.AppendHeader("Access-Control-Allow-Origin", "*");
             Uri url = context.Request.Url;
             string handler = url.AbsolutePath;
 

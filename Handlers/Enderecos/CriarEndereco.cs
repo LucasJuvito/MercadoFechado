@@ -27,9 +27,9 @@ namespace ServidorTestes.Handlers.Enderecos
                 Cidade = request.Cidade,
                 Bairro = request.Bairro,
                 Quadra = request.Quadra,
-                Numero = request.Numero,
+                Numero = request.Numero.Value,
                 Complemento = request.Complemento,
-                IDProprietario = request.IDProprietario
+                IDProprietario = request.IDProprietario.Value
             };
 
             if(!endereco.AdicionarAoBanco())

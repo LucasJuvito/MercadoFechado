@@ -85,5 +85,39 @@ namespace ServidorTestes.Banco
             }
             return ret;
         }
+
+        //cep, estado, cidade, bairro, quadra, numero, complemento, id_proprietario
+        public static bool AtualizarEndereco(long id, Endereco novo)
+        {
+            try
+            {
+                using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+                connection.Open();
+
+                using MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "UPDATE endereco " +
+                    "SET cep = @cep, estado = @estado, cidade = @cidade, " +
+                    "bairro = @bairro, quadra = @quadra, numero = @numero, complemento = @complemento " +
+                    "WHERE id_endereco = @id";
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@cep", novo.CEP);
+                command.Parameters.AddWithValue("@estado", novo.Estado);
+                command.Parameters.AddWithValue("@cidade", novo.Cidade);
+                command.Parameters.AddWithValue("@bairro", novo.Bairro);
+                command.Parameters.AddWithValue("@quadra", novo.Quadra);
+                command.Parameters.AddWithValue("@numero", novo.Numero);
+                command.Parameters.AddWithValue("@complemento", novo.Complemento);
+
+                if (command.ExecuteNonQuery() != 1)
+                    return false;
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
     }
 }
