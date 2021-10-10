@@ -49,7 +49,7 @@ section#esp {
     font-size: 20px;
 }
 
-#meus-dados {
+#meus-dados, #minhas-compras, #estatisticas{
     font-family: 'Roboto';
     font-weight: 300;
     font-size: 18px;
@@ -58,7 +58,7 @@ section#esp {
     margin-left: 21%;
 }
 
-#meus-dados #meus-dados-container {
+#meus-dados #meus-dados-container,  #minhas-compras #minhas-compras-container{
     width: 95%;
     display: flex;
     flex-direction: column;
@@ -144,4 +144,89 @@ section#esp {
 
 #adicionar-endereco:hover a{
     color: black;
+}
+
+#minhas-compras #minhas-compras-container h1{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#minhas-compras #minhas-compras-container .compra{
+    width: 100%;
+    background-color: rgb(200, 200, 200);
+    padding: 0px 5px;
+    margin-bottom: 40px;
+    border: 2px solid rgb(200, 200, 200);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+#minhas-compras #minhas-compras-container .compra .content{
+    width: 100%;
+    padding: 10px 5px;
+    display: flex;
+}
+
+#minhas-compras #minhas-compras-container .compra .titulo{
+    font-size: 20px;
+    border-bottom: 1px solid rgb(168, 168, 168);
+    padding: 10px 0px;
+}
+
+#minhas-compras #minhas-compras-container .compra .coluna1{
+    width: 30%;
+    padding: 0px 10px;
+}
+
+/* #minhas-compras #minhas-compras-container .compra .coluna1 .titulo{
+    font-size: 20px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+} */
+
+#minhas-compras #minhas-compras-container .compra img{
+    width: 100px;
+    height: 100px;
+}
+
+#minhas-compras #minhas-compras-container .compra .coluna2{
+    width: 100%;
+}
+
+#minhas-compras #minhas-compras-container .compra .coluna2 .data,
+#minhas-compras #minhas-compras-container .compra .coluna2 .vendedor,
+#minhas-compras #minhas-compras-container .compra .coluna2 .avaliacao{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#minhas-compras #minhas-compras-container .compra .coluna2 h1{
+    font-size: 20px;
+    width: 30%;
+}
+
+#minhas-compras #minhas-compras-container .compra .coluna2 .data .data-compra,
+#minhas-compras #minhas-compras-container .compra .coluna2 .vendedor .vendedor-nome,
+#minhas-compras #minhas-compras-container .compra .coluna2 .avaliacao .valor{
+    color:rgb(70, 70, 70);
+}
+
+#estatisticas-container .estatistica h1{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#estatisticas-container .estatistica .content{
+    width: 100%;
+    background-color: rgb(200, 200, 200);
+    padding: 10px 5px;
+    margin-bottom: 40px;
+    border: 2px solid rgb(200, 200, 200);
+    border-radius: 5px;
 }
