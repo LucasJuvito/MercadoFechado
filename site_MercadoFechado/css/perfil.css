@@ -1,0 +1,147 @@
+﻿/* importando fontes do google */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+
+section#esp {
+    height: 70px;
+    background: rgb(87, 87, 87);
+}
+
+#menu {
+    float: left;
+    font-family: 'Roboto';
+    font-weight: 300;
+    width: 20%;
+    background-color: white;
+    padding: 40px 0px;
+}
+
+#menu #menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#menu .menu-lista {
+    border: 2px solid rgb(200, 200, 200);
+    border-radius: 5px;
+}
+
+#menu .menu-lista li {
+    padding: 10px;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    text-align: center;
+    transition: .3s ease-in-out;
+}
+
+#menu .menu-lista li:last-child{
+    border-bottom: 0px solid rgb(200, 200, 200);
+}
+
+#menu .menu-lista li:hover {
+    cursor: pointer;
+    background-color: rgb(200, 200, 200);
+}
+
+#menu .menu-lista li a {
+    padding:5px;   
+    color: black;
+    font-size: 20px;
+}
+
+#meus-dados {
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 18px;
+    width: 70%;
+    padding: 40px 0px;
+    margin-left: 21%;
+}
+
+#meus-dados #meus-dados-container {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+#meus-dados #meus-dados-container h1{
+    font-size: 24px;
+}
+
+#meus-dados #meus-dados-container #conta {
+    width: 100%;
+    background-color: rgb(200, 200, 200);
+    padding: 10px 5px;
+    margin-bottom: 40px;
+    border: 2px solid rgb(200, 200, 200);
+    border-radius: 5px;
+    
+}
+
+#meus-dados #meus-dados-container #conta div{
+    padding: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#meus-dados #meus-dados-container #conta div h1{
+    font-size: 20px;
+    width: 20%;
+}
+
+#meus-dados #meus-dados-container #conta div p{
+    color:rgb(70, 70, 70)
+}
+
+#meus-dados #meus-dados-container #enderecos {
+    width: 100%;
+    background-color: rgb(200, 200, 200);
+    padding: 10px 5px;
+    border: 2px solid rgb(200, 200, 200);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+	margin: 0 auto;
+    flex-wrap: wrap;
+    color:rgb(70, 70, 70)
+}
+
+#meus-dados #meus-dados-container .endereco div{
+    padding: 5px;
+}
+
+#meus-dados #meus-dados-container #enderecos .endereco{
+    padding-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: rgba(221, 221, 221);
+    text-align: center;
+}
+
+
+#adicionar-endereco{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(151, 151, 151);
+    color: white;
+    font-size: 18px;
+    transition: .3s ease-in-out;
+    width:fit-content;
+    border: 1px solid transparent;
+    margin: 2px;
+}
+
+#adicionar-endereco a{
+    color: white;
+}
+
+#adicionar-endereco:hover{
+    background-color: rgb(223, 223, 223);
+    color: black;
+    border: 1px solid black;
+}
+
+#adicionar-endereco:hover a{
+    color: black;
+}
