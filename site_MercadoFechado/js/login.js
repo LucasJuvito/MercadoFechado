@@ -23,7 +23,7 @@ function TentarLogar() {
         (token) => {
             setCookie("usuario_logado", usuario, 1);
             setCookie("token_acesso", token, 1);
-            document.location = "http://localhost:1800";
+            document.location = "../index.html";
         },
         (erro) => {
             document.getElementById("erro_login").innerText = erro.Message;
