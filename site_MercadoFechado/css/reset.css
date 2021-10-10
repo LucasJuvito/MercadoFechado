@@ -44,9 +44,11 @@ table {
 
 a{
     text-decoration: none;
+    cursor: pointer;
 }
 
 button{
+    cursor: pointer;
     border: none;
     margin: 0;
     padding: 0;
