@@ -1,8 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 using ServidorTestes.Banco;
-using ServidorTestes.Requests;
 using ServidorTestes.Responses;
 
 namespace ServidorTestes.Handlers.Produtos
@@ -11,46 +14,46 @@ namespace ServidorTestes.Handlers.Produtos
     {
         public static void ProcessContext(HttpListenerContext context, StreamWriter writer, StreamReader reader)
         {
-            string jsonStr = reader.ReadToEnd();
-            CriarProdutoRequest request = CriarProdutoRequest.FromJSON(jsonStr);
+            var data = context.Request.InputStream;
+            var streamContent = new StreamContent(data);
+            streamContent.Headers.ContentType = MediaTypeHeaderValue.Parse(context.Request.ContentType);
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            var provider = streamContent.ReadAsMultipartAsync().Result;
+            MemoryStream imagem = new MemoryStream();
 
-            if (request == null || !request.IsValid())
+            foreach (var httpContent in provider.Contents)
             {
-                writer.WriteLine(new BaseResponse() { Message = "Pedido inválido!" }.ToJSON());
-                return;
+                var fileName = httpContent.Headers.ContentDisposition.FileName;
+                if (string.IsNullOrWhiteSpace(fileName))
+                {
+                    dict.Add(httpContent.Headers.ContentDisposition.Name.Replace("\"", ""), httpContent.ReadAsStringAsync().Result.Replace("\"", ""));
+                    continue;
+                }
+
+                using (Stream fileContents = httpContent.ReadAsStream())
+                {
+                    fileContents.CopyTo(imagem);
+                }
             }
 
-            Categoria cat = Categoria.BuscarID(request.Categoria);
-            if (cat == null)
+            Produto produto = new Produto()
             {
-                writer.WriteLine(new BaseResponse() { Message = "Categoria não existe!" }.ToJSON());
-                return;
-            }
-
-            long idcategoria = cat.ID;
-
-            Produto produto = new Produto
-            {
-                Nome = request.Nome,
-                Marca = request.Marca,
-                Fabricante = request.Fabricante,
-                Ano = request.Ano,
-                IDCategoria = idcategoria,
-                Descricao = request.Descricao
+                Nome = dict["Nome"],
+                Marca = dict["Marca"],
+                Fabricante = dict["Fabricante"],
+                Ano = Convert.ToInt32(dict["AnoFabricacao"]),
+                IDCategoria = Convert.ToInt32(dict["IDCategoria"]),
+                Descricao = dict["Descricao"],
+                Imagem = imagem.ToArray()
             };
-
             if(!produto.AdicionarAoBanco())
             {
-                writer.WriteLine(new BaseResponse() { Message = "Não foi possível adicionar produto ao BD!" }.ToJSON());
+                writer.WriteLine(new BaseResponse() { Message = "Não foi possível adicionar ao banco!" }.ToJSON());
                 return;
             }
 
-            CriarProdutoResponse response = new CriarProdutoResponse() {
-                Produto = produto,
-                Success = true,
-                Message = "Produto adicionado com sucesso!"
-            };
-            writer.WriteLine(response.ToJSON());
+            Console.WriteLine(JsonConvert.SerializeObject(dict));
+
         }
     }
 }

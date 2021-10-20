@@ -24,8 +24,9 @@ namespace ServidorTestes.Handlers.Anuncios
             {
                 Titulo = request.Titulo,
                 Descricao = request.Descricao,
-                IDProduto = request.IDProduto,
-                IDVendedor = request.IDVendedor
+                IDProduto = request.IDProduto.Value,
+                IDVendedor = request.IDVendedor.Value,
+                Valor = request.Valor.Value
             };
 
             if(!anuncio.AdicionarAoBanco())

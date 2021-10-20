@@ -146,7 +146,7 @@ h3{
     cursor: pointer;
 }
 
-.container .content #comprar #selecionar-endereco #selecionado{
+.container .content #comprar #selecionar-endereco .selecionado{
     background-color: rgba(59, 219, 59, 0.8)!important;
     border: 2px solid rgb(22, 141, 22)!important;
     color: black;

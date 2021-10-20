@@ -11,13 +11,17 @@ namespace ServidorTestes.Requests
     {
         public string Titulo { get; set; }
         public string Descricao { get; set; }
-        public long IDProduto { get; set; }
-        public long IDVendedor { get; set; }
+        public long? IDProduto { get; set; }
+        public long? IDVendedor { get; set; }
+        public double? Valor { get; set; }
 
         public bool IsValid()
         {
             if (Titulo == null) return false;
             if (Descricao == null) return false;
+            if (IDProduto == null) return false;
+            if (IDVendedor == null) return false;
+            if (Valor == null) return false;
 
             return true;
         }

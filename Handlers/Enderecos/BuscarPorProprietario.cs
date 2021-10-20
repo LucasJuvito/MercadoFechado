@@ -11,15 +11,16 @@ namespace ServidorTestes.Handlers.Enderecos
     {
         public static void ProcessContext(HttpListenerContext context, StreamWriter writer, StreamReader reader)
         {
-            string jsonStr = reader.ReadToEnd();
-            BuscarEnderecosPorProprietarioRequest request = BuscarEnderecosPorProprietarioRequest.FromJSON(jsonStr);
-            if (request == null || !request.IsValid())
+            string token = context.Request.Headers.Get("Authorization");
+
+            AcessoUsuario usuarioLogado = AcessoUsuario.BuscarToken(token);
+            if (usuarioLogado == null)
             {
-                writer.WriteLine(new BaseResponse() { Message = "Pedido inválido!" }.ToJSON());
+                writer.WriteLine(new BaseResponse() { Message = "Usuário não está logado!" }.ToJSON());
                 return;
             }
 
-            List<Endereco> enderecos = Endereco.BuscarPorProprietario(request.ID.Value);
+            List<Endereco> enderecos = Endereco.BuscarPorProprietario(usuarioLogado.IDUsuarioComum);
 
             BuscarEnderecosPorProprietarioResponse response = new BuscarEnderecosPorProprietarioResponse()
             {

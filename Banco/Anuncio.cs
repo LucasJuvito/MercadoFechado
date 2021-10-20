@@ -24,9 +24,10 @@ namespace ServidorTestes.Banco
                 connection.Open();
 
                 using MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO anuncio (titulo, descricao, id_produto, id_vendedor) " +
-                    "VALUES (@titulo, @descricao, @id_produto, @id_vendedor);";
+                command.CommandText = "INSERT INTO anuncio (titulo, valor, descricao, id_produto, id_vendedor) " +
+                    "VALUES (@titulo, @valor, @descricao, @id_produto, @id_vendedor);";
                 command.Parameters.AddWithValue("@titulo", Titulo);
+                command.Parameters.AddWithValue("@valor", Valor);
                 command.Parameters.AddWithValue("@descricao", Descricao);
                 command.Parameters.AddWithValue("@id_produto", IDProduto);
                 command.Parameters.AddWithValue("@id_vendedor", IDVendedor);

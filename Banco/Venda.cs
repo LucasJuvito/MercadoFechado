@@ -71,6 +71,7 @@ namespace ServidorTestes.Banco
                     ID = reader.GetInt64(0),
                     Valor = reader.GetDouble(1),
                     Data = reader.GetDateTime(2),
+                    IDAnuncio = idAnuncio,
                     IDEndereco = reader.GetInt64(3),
                     IDVendedor = reader.GetInt64(4),
                     IDComprador = reader.GetInt64(5)

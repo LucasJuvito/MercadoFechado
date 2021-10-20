@@ -11,7 +11,7 @@ namespace ServidorTestes.Banco
     {
         public long ID;
         public string CEP;
-        public string Estado;
+        public string SiglaEstado;
         public string Cidade;
         public string Bairro;
         public string Quadra;
@@ -27,10 +27,10 @@ namespace ServidorTestes.Banco
                 connection.Open();
 
                 using MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO endereco (cep, estado, cidade, bairro, quadra, numero, complemento, id_proprietario) " +
-                    "VALUES (@cep, @estado, @cidade, @bairro, @quadra, @numero, @complemento, @id_proprietario); ";
+                command.CommandText = "INSERT INTO endereco (cep, sigla_estado, cidade, bairro, quadra, numero, complemento, id_proprietario) " +
+                    "VALUES (@cep, @sigla_estado, @cidade, @bairro, @quadra, @numero, @complemento, @id_proprietario); ";
                 command.Parameters.AddWithValue("@cep", CEP);
-                command.Parameters.AddWithValue("@estado", Estado);
+                command.Parameters.AddWithValue("@sigla_estado", SiglaEstado);
                 command.Parameters.AddWithValue("@cidade", Cidade);
                 command.Parameters.AddWithValue("@bairro", Bairro);
                 command.Parameters.AddWithValue("@quadra", Quadra);
@@ -51,14 +51,45 @@ namespace ServidorTestes.Banco
             }
         }
 
+        public static Endereco BuscarPorID(long id)
+        {
+            using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+            connection.Open();
+
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT id_proprietario, cep, sigla_estado, cidade, bairro, quadra, numero, complemento FROM endereco " +
+                "WHERE id_endereco = @id";
+            command.Parameters.AddWithValue("@id", id);
+
+            using MySqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+
+            if (!reader.HasRows)
+                return null;
+
+            Endereco endereco = new Endereco
+            {
+                ID = id,
+                IDProprietario = reader.GetInt64(0),
+                CEP = reader.GetString(1),
+                SiglaEstado = reader.GetString(2),
+                Cidade = reader.GetString(3),
+                Bairro = reader.GetString(4),
+                Quadra = reader.GetString(5),
+                Numero = reader.GetInt32(6),
+                Complemento = reader.IsDBNull(7) ? null : reader.GetString(7)
+            };
+            return endereco;
+        }
+
         public static List<Endereco> BuscarPorProprietario(long id)
         {
             using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
             connection.Open();
 
             using MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT id_endereco, cep, estado, cidade, bairro, quadra, numero, complemento, id_proprietario FROM endereco " +
-                "JOIN usuario_comum ON id_proprietario = id_user_comum WHERE id_user_comum = @id";
+            command.CommandText = "SELECT id_endereco, cep, sigla_estado, cidade, bairro, quadra, numero, complemento, id_proprietario FROM endereco " +
+                "WHERE id_proprietario = @id";
             command.Parameters.AddWithValue("@id", id);
 
             using MySqlDataReader reader = command.ExecuteReader();
@@ -73,13 +104,13 @@ namespace ServidorTestes.Banco
                 {
                     ID = reader.GetInt64(0),
                     CEP = reader.GetString(1),
-                    Estado = reader.GetString(2),
+                    SiglaEstado = reader.GetString(2),
                     Cidade = reader.GetString(3),
                     Bairro = reader.GetString(4),
                     Quadra = reader.GetString(5),
                     Numero = reader.GetInt32(6),
                     Complemento = reader.IsDBNull(7) ? null : reader.GetString(7),
-                    IDProprietario = reader.GetInt64(8)
+                    IDProprietario = id
                 };
                 ret.Add(endereco);
             }
@@ -96,12 +127,12 @@ namespace ServidorTestes.Banco
 
                 using MySqlCommand command = connection.CreateCommand();
                 command.CommandText = "UPDATE endereco " +
-                    "SET cep = @cep, estado = @estado, cidade = @cidade, " +
+                    "SET cep = @cep, sigla_estado = @sigla_estado, cidade = @cidade, " +
                     "bairro = @bairro, quadra = @quadra, numero = @numero, complemento = @complemento " +
                     "WHERE id_endereco = @id";
                 command.Parameters.AddWithValue("@id", id);
                 command.Parameters.AddWithValue("@cep", novo.CEP);
-                command.Parameters.AddWithValue("@estado", novo.Estado);
+                command.Parameters.AddWithValue("@sigla_estado", novo.SiglaEstado);
                 command.Parameters.AddWithValue("@cidade", novo.Cidade);
                 command.Parameters.AddWithValue("@bairro", novo.Bairro);
                 command.Parameters.AddWithValue("@quadra", novo.Quadra);

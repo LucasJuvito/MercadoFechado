@@ -1,6 +1,6 @@
-function CriarDivImagem() {
+function CriarDivImagem(idproduto) {
     var img = document.createElement("img");
-    img.src = "images/PS5DigitalEdition.png";
+    img.src = "http://localhost:1890/produtos/buscar/imagem?id_produto=" + idproduto;
 
     var containerImg = document.createElement("div");
     containerImg.classList.add("box-image");
@@ -42,7 +42,7 @@ ObterAnuncios(idCategoria, (anuncios) => {
 
     for(var i = 0; i < anuncios.length; i++) {
         var anuncio = anuncios[i];
-        var containerImg = CriarDivImagem();
+        var containerImg = CriarDivImagem(anuncios[i].IDProduto);
         var containerTexto = CriarDivDetalhe(formatter.format(anuncio.Valor), anuncio.Descricao);
 
         var box = document.createElement("a");

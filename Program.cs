@@ -4,6 +4,7 @@ using ServidorTestes.Banco;
 using ServidorTestes.Requests;
 using ServidorTestes.Responses;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 
@@ -26,6 +27,8 @@ namespace ServidorTestes
             api.AddAction("/categorias/atualizar/nome", Handlers.Categorias.AtualizarCategoria.ProcessContext);
 
             api.AddAction("/produtos/criar", Handlers.Produtos.CriarProduto.ProcessContext);
+            api.AddAction("/produtos/buscar/porid", Handlers.Produtos.BuscarPorID.ProcessContext);
+            api.AddAction("/produtos/buscar/imagem", Handlers.Produtos.BuscarFotoProduto.ProcessContext);
             api.AddAction("/produtos/listar/porcategoria", Handlers.Produtos.BuscarProdutosPorCategoria.ProcessContext);
 
             api.AddAction("/anuncios/criar", Handlers.Anuncios.CriarAnuncio.ProcessContext);
@@ -35,7 +38,7 @@ namespace ServidorTestes
             api.AddAction("/anuncios/atualizar/descricao", Handlers.Anuncios.AtualizarDescricao.ProcessContext);
 
             api.AddAction("/enderecos/criar", Handlers.Enderecos.CriarEndereco.ProcessContext);
-            api.AddAction("/enderecos/listar/porproprietario", Handlers.Enderecos.BuscarPorProprietario.ProcessContext);
+            api.AddAction("/enderecos/listar", Handlers.Enderecos.BuscarPorProprietario.ProcessContext);
 
             api.AddAction("/comentarios/criar", Handlers.Comentarios.CriarComentario.ProcessContext);
             api.AddAction("/comentarios/listar/poranuncio", Handlers.Comentarios.ListarComentarios.ProcessContext);
@@ -45,7 +48,7 @@ namespace ServidorTestes
             api.AddAction("/avaliacoes/atualizar/pontuacao", Handlers.Avaliacoes.AtualizarPontuacao.ProcessContext);
             api.AddAction("/avaliacoes/atualizar/comentario", Handlers.Avaliacoes.AtualizarComentario.ProcessContext);
 
-            api.AddAction("/vendas/criar", Handlers.Vendas.CriarVenda.ProcessContext);
+            api.AddAction("/vendas/comprar", Handlers.Vendas.EfetuarCompra.ProcessContext);
             api.AddAction("/vendas/listar/poranuncio", Handlers.Vendas.ListarVendasPorAnuncio.ProcessContext);
 
             api.AddAction("/login/logar", Handlers.Login.LogarUsuario.ProcessContext);

@@ -8,8 +8,8 @@ using ServidorTestes.Banco;
 
 namespace ServidorTestes.Responses
 {
-    class CriarVendaResponse : BaseResponse
+    class BuscarProdutoPorIDResponse : BaseResponse
     {
-        public Venda Venda { get; set; }
+        public Produto Produto { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace ServidorTestes.Handlers.Enderecos
             Endereco endereco = new Endereco
             {
                 CEP = request.CEP,
-                Estado = request.Estado,
+                SiglaEstado = request.Estado,
                 Cidade = request.Cidade,
                 Bairro = request.Bairro,
                 Quadra = request.Quadra,

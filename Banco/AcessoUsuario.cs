@@ -36,5 +36,30 @@ namespace ServidorTestes.Banco
                 return false;
             }
         }
+
+        public static AcessoUsuario BuscarToken(string token)
+        {
+            using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+            connection.Open();
+
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT id_user_comum " +
+                "FROM acesso_usuario " +
+                "WHERE token = @token LIMIT 1;";
+            command.Parameters.AddWithValue("@token", token);
+
+            using MySqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+
+            if (!reader.HasRows)
+                return null;
+
+            AcessoUsuario ret = new AcessoUsuario()
+            {
+                IDUsuarioComum = reader.GetInt64(0),
+                Token = token
+            };
+            return ret;
+        }
     }
 }

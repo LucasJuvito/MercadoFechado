@@ -26,7 +26,7 @@ namespace ServidorTestes.Handlers.Comentarios
             Endereco endereco = new Endereco()
             {
                 CEP = request.CEP,
-                Estado = request.Estado,
+                SiglaEstado = request.Estado,
                 Cidade = request.Cidade
             };
 
