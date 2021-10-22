@@ -190,17 +190,16 @@ INSERT INTO categoria (nome) VALUES ('FILMES');
 INSERT INTO categoria (nome) VALUES ('CELULARES');
 
 /* Produtos */
-INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, descricao)
- VALUES ('Playstation 5', 'SONY', 'SONY', 2020, 1, 'cor: branco');
-INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, descricao)
- VALUES ('RTX 3090', 'NVIDIA', 'ZOTAC', 2020, 2, 'cor: preta, led: sim');
-INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, descricao)
- VALUES ('Reinos de Runeterra', 'LEAGUE OF LEGENDS', 'RIOT', 2020, 3, 'capa: dura');
-INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, descricao)
- VALUES ('Homem Aranha 2', 'SONY', 'SONY', 2004, 4, 'Fita VHS');
-INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, descricao)
- VALUES ('Iphone 13 PRO', 'APPLE', 'APPLE', 2021, 5, 'cor: azul cierra, 128GB RAM');
-
+INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, foto, descricao)
+ VALUES ('Playstation 5', 'SONY', 'SONY', 2020, 1, LOAD_FILE('../site_MercadoFechado/images/PS5DigitalEdition.png'), 'cor: branco');
+INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, foto, descricao)
+ VALUES ('RTX 3090', 'NVIDIA', 'ZOTAC', 2020, 2, LOAD_FILE('../site_MercadoFechado/images/RTX_3090_Founders_Edition.jpg'), 'cor: preta, led: sim');
+INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, foto, descricao)
+ VALUES ('Reinos de Runeterra', 'LEAGUE OF LEGENDS', 'RIOT', 2020, 3, LOAD_FILE('../site_MercadoFechado/images/league-of-legends-reinos-de-runeterra.jpg'), 'capa: dura');
+INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, foto, descricao)
+ VALUES ('Homem Aranha 2', 'SONY', 'SONY', 2004, 4, LOAD_FILE('../site_MercadoFechado/images/homem_aranha2.jpg'), 'Fita VHS');
+INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, foto, descricao)
+ VALUES ('Iphone 13 PRO', 'APPLE', 'APPLE', 2021, 5, LOAD_FILE('../site_MercadoFechado/images/iphone-13-pro-blue-select.png'), 'cor: azul cierra, 128GB RAM');
  /* Anuncios */
 INSERT INTO anuncio (titulo, valor, descricao, id_produto, id_vendedor)
  VALUES ('PS5 muito barato', 10000.0, 'O console mais potente da útima geração', 1, 1);
