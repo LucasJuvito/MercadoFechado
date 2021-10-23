@@ -41,13 +41,62 @@ namespace ServidorTestes.Banco
             }
         }
 
+        public bool DeletarDoBanco()
+        {
+            try
+            {
+                using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+                connection.Open();
+
+                using MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "DELETE FROM comentarios WHERE id_comentario = @id";
+                command.Parameters.AddWithValue("@id", ID);
+
+                if (command.ExecuteNonQuery() != 1)
+                    return false;
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
+        public static Comentario BuscarPorID(long idComentario)
+        {
+            using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+            connection.Open();
+
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT id_anuncio, id_user_comum, descricao FROM comentarios WHERE id_comentario = @id";
+            command.Parameters.AddWithValue("@id", idComentario);
+
+            using MySqlDataReader reader = command.ExecuteReader();
+
+            reader.Read();
+            
+            if (!reader.HasRows)
+                return null;
+
+            Comentario comentario = new Comentario
+            {
+                IDAnuncio = reader.GetInt64(0),
+                IDUserComum = reader.GetInt64(1),
+                Descricao = reader.GetString(2),
+                ID = idComentario
+            };
+            return comentario;
+        }
+
         public static List<Comentario> BuscarComentariosPorAnuncio(long idAnuncio)
         {
             using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
             connection.Open();
 
             using MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT id_comentario, id_user_comum, descricao FROM comentarios WHERE id_anuncio = @id";
+            command.CommandText = "SELECT id_comentario, id_user_comum, descricao FROM comentarios WHERE id_anuncio = @id ORDER BY id_comentario DESC";
             command.Parameters.AddWithValue("@id", idAnuncio);
 
             using MySqlDataReader reader = command.ExecuteReader();

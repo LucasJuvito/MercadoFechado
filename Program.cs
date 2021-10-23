@@ -56,6 +56,7 @@ namespace ServidorTestes
             api.AddAction("/estados/listar", Handlers.Enderecos.ListarEstados.ProcessContext);
 
             api.AddAction("/comentarios/criar", Handlers.Comentarios.CriarComentario.ProcessContext);
+            api.AddAction("/comentarios/deletar", Handlers.Comentarios.DeletarComentario.ProcessContext);
             api.AddAction("/comentarios/listar/poranuncio", Handlers.Comentarios.ListarComentarios.ProcessContext);
 
             api.AddAction("/avaliacoes/criar", Handlers.Avaliacoes.CriarAvaliacao.ProcessContext);

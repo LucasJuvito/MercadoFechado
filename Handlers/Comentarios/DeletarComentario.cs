@@ -1,21 +1,24 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using ServidorTestes.Banco;
+﻿using ServidorTestes.Banco;
 using ServidorTestes.Requests;
 using ServidorTestes.Responses;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ServidorTestes.Handlers.Comentarios
 {
-    class CriarComentario
+    class DeletarComentario
     {
         public static void ProcessContext(HttpListenerContext context, StreamWriter writer, StreamReader reader)
         {
             string jsonStr = reader.ReadToEnd();
             string token = context.Request.Headers.Get("Authorization");
 
-            CriarComentarioRequest request = CriarComentarioRequest.FromJSON(jsonStr);
-
+            DeletarComentarioAnuncioRequest request = DeletarComentarioAnuncioRequest.FromJSON(jsonStr);
             if (request == null || !request.IsValid())
             {
                 writer.WriteLine(new BaseResponse() { Message = "Pedido inválido!" }.ToJSON());
@@ -29,23 +32,23 @@ namespace ServidorTestes.Handlers.Comentarios
                 return;
             }
 
-            Comentario comentario = new Comentario
+            Comentario comentario = Comentario.BuscarPorID(request.ID.Value);
+            if (comentario == null || comentario.IDUserComum != usuarioLogado.IDUsuarioComum)
             {
-                Descricao = request.Descricao,
-                IDUserComum = usuarioLogado.IDUsuarioComum,
-                IDAnuncio = request.IDAnuncio.Value
-            };
-
-            if(!comentario.AdicionarAoBanco())
-            {
-                writer.WriteLine(new BaseResponse() { Message = "Não foi possível adicionar comentário ao BD!" }.ToJSON());
+                writer.WriteLine(new BaseResponse() { Message = "Não foi possível encontrar comentário no BD!" }.ToJSON());
                 return;
             }
 
-            CriarComentarioResponse response = new CriarComentarioResponse() {
-                Comentario = comentario,
+            if(!comentario.DeletarDoBanco())
+            {
+                writer.WriteLine(new BaseResponse() { Message = "Não foi possível deletar comentário do BD!" }.ToJSON());
+                return;
+            }
+
+            BaseResponse response = new BaseResponse()
+            {
                 Success = true,
-                Message = "Comentário adicionado com sucesso!"
+                Message = "Comentário deletado com sucesso!"
             };
             writer.WriteLine(response.ToJSON());
         }
