@@ -39,6 +39,9 @@ namespace ServidorTestes.Banco
 
         public static AcessoUsuario BuscarToken(string token)
         {
+            if (token == null)
+                return null;
+
             using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
             connection.Open();
 

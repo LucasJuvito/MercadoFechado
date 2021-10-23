@@ -20,6 +20,14 @@ namespace ServidorTestes.Handlers.Enderecos
                 return;
             }
 
+            string token = context.Request.Headers.Get("Authorization");
+            AcessoUsuario usuarioLogado = AcessoUsuario.BuscarToken(token);
+            if (usuarioLogado == null)
+            {
+                writer.WriteLine(new BaseResponse() { Message = "Usuário não está logado!" }.ToJSON());
+                return;
+            }
+
             Endereco endereco = new Endereco
             {
                 CEP = request.CEP,
@@ -29,7 +37,7 @@ namespace ServidorTestes.Handlers.Enderecos
                 Quadra = request.Quadra,
                 Numero = request.Numero.Value,
                 Complemento = request.Complemento,
-                IDProprietario = request.IDProprietario.Value
+                IDProprietario = usuarioLogado.IDUsuarioComum
             };
 
             if(!endereco.AdicionarAoBanco())

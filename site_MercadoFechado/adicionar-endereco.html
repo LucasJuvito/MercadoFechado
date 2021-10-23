@@ -18,58 +18,60 @@
   <div class="container" >
     <div class="content">  
       <div id="cadastroendereco">
-        <form method="post" action=""> 
-          <h1>Endereço</h1>
-          <p> 
-            <label for="cep_cad">CEP</label>
-            <input id="cep_cad" pattern="\d{5}-\d{3}" title="Digite um CEP no formato: xxxxx-xxx" name="cep_cad" required="required" type="text" placeholder="00000-000" />
-          </p>
+        <h1>Endereço</h1>
+        <p> 
+          <label for="cep_cad">CEP</label>
+          <input id="cep_cad" pattern="\d{5}-\d{3}" title="Digite um CEP no formato: xxxxx-xxx" name="cep_cad" required="required" type="text" placeholder="00000-000" />
+        </p>
 
-          <p> 
-            <label for="estado_cad">Unidade da Federação / estado </label>
-            <input id="estado_cad" name="estado_cad" required="required" type="text" placeholder="Goiás" />
-          </p>
+        <p> 
+          <label for="estado_cad">Unidade da Federação / estado </label>
+          <select name="estado_cad" id="estado_cad">
+            
+          </select>
+          <!--<input id="estado_cad" name="estado_cad" required="required" type="text" placeholder="Goiás" />-->
+        </p>
 
-          <p> 
-            <label for="cidade_cad">Cidade </label>
-            <input id="cidade_cad" name="cidade_cad" required="required" type="text" placeholder="Águas Lindas de Goiás" />
-          </p>
+        <p> 
+          <label for="cidade_cad">Cidade </label>
+          <input id="cidade_cad" name="cidade_cad" required="required" type="text" placeholder="Águas Lindas de Goiás" />
+        </p>
 
-          <p> 
-            <label for="bairro_cad">Bairro </label>
-            <input id="bairro_cad" name="bairro_cad" required="required" type="text" placeholder="Perola" />
-          </p>
+        <p> 
+          <label for="bairro_cad">Bairro </label>
+          <input id="bairro_cad" name="bairro_cad" required="required" type="text" placeholder="Perola" />
+        </p>
 
-          <p> 
-            <label for="quadra_cad">Quadra </label>
-            <input id="quadra_cad" name="quadra_cad" required="required" type="text" placeholder="qd 1" />
-          </p>
+        <p> 
+          <label for="quadra_cad">Quadra </label>
+          <input id="quadra_cad" name="quadra_cad" required="required" type="text" placeholder="qd 1" />
+        </p>
 
-          <p> 
-            <label for="numero_cad">Número </label>
-            <input id="numero_cad" name="numero_cad" required="required" type="number" placeholder="1" />
-          </p>
+        <p> 
+          <label for="numero_cad">Número </label>
+          <input id="numero_cad" name="numero_cad" required="required" type="number" placeholder="1" />
+        </p>
 
-          <p> 
-            <label for="complemento_cad">Complemento </label>
-            <input id="complemento_cad" name="complemento_cad" type="text" placeholder="portão branco" />
-          </p>
-           
-          <p> 
-            <input type="submit" value="Cadastrar"/> 
-          </p>
-           
-          <p class="link">
-            <a href="perfil.html"> Cancelar </a>
-          </p>
-        </form>
+        <p> 
+          <label for="complemento_cad">Complemento </label>
+          <input id="complemento_cad" name="complemento_cad" type="text" placeholder="portão branco" />
+        </p>
+          
+        <p> 
+          <input onclick="ClicarAdicionarEndereco()" type="submit" value="Cadastrar"/> 
+        </p>
+          
+        <p class="link">
+          <a href="perfil.html"> Cancelar </a>
+        </p>
       </div>
     </div>
   </div> 
   <!-- Linkando fonte do google -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="js/utils.js"></script>
-  <script src="js/api/login.js"></script>
+  <script src="js/api/enderecos.js"></script>
+  <script src="js/adicionarendereco.js"></script>
   <script src="js/login.js"></script>
 </body>
 </html>

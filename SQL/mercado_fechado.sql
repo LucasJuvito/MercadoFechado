@@ -6,6 +6,13 @@ DROP DATABASE IF EXISTS mercado_fechado;
 CREATE DATABASE mercado_fechado;
 USE mercado_fechado;
 
+CREATE TABLE acesso_usuario (
+    token CHAR(32) NOT NULL PRIMARY KEY,
+    id_user_comum INTEGER,
+    data_expiracao DATETIME DEFAULT (NOW() + INTERVAL 24 HOUR),
+    FOREIGN KEY (id_user_comum) REFERENCES usuario_comum(id_user_comum)
+);
+
 CREATE TABLE usuario_comum(
     id_user_comum INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     login VARCHAR(50) NOT NULL UNIQUE,
@@ -59,7 +66,7 @@ CREATE TABLE produto(
     fabricante TINYTEXT NOT NULL,
     ano_fabricacao SMALLINT NOT NULL,
     id_categoria INT NOT NULL,
-    foto BLOB,
+    foto LONGBLOB,
     descricao TINYTEXT,
     FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria) ON UPDATE CASCADE
 );
@@ -99,7 +106,7 @@ CREATE TABLE venda(
 
 CREATE TABLE avaliacao(
     id_avaliacao INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    pontuacao SMALLINT NOT NULL,
+    pontuacao DOUBLE NOT NULL,
     comentario TINYTEXT,
     id_venda INT NOT NULL,
     FOREIGN KEY (id_venda) REFERENCES venda(id_venda) ON UPDATE CASCADE
@@ -191,13 +198,13 @@ INSERT INTO categoria (nome) VALUES ('CELULARES');
 
 /* Produtos */
 INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, foto, descricao)
- VALUES ('Playstation 5', 'SONY', 'SONY', 2020, 1, LOAD_FILE('../site_MercadoFechado/images/PS5DigitalEdition.png'), 'cor: branco');
+ VALUES ('Playstation 5', 'SONY', 'SONY', 2020, 1, NULL, 'cor: branco');
 INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, foto, descricao)
  VALUES ('RTX 3090', 'NVIDIA', 'ZOTAC', 2020, 2, LOAD_FILE('../site_MercadoFechado/images/RTX_3090_Founders_Edition.jpg'), 'cor: preta, led: sim');
 INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, foto, descricao)
  VALUES ('Reinos de Runeterra', 'LEAGUE OF LEGENDS', 'RIOT', 2020, 3, LOAD_FILE('../site_MercadoFechado/images/league-of-legends-reinos-de-runeterra.jpg'), 'capa: dura');
 INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, foto, descricao)
- VALUES ('Homem Aranha 2', 'SONY', 'SONY', 2004, 4, LOAD_FILE('../site_MercadoFechado/images/homem_aranha2.jpg'), 'Fita VHS');
+ VALUES ('Homem Aranha 2', 'SONY', 'SONY', 2004, 4, LOAD_FILE('homem_aranha2.jpg'), 'Fita VHS');
 INSERT INTO produto (nome, marca, fabricante, ano_fabricacao, id_categoria, foto, descricao)
  VALUES ('Iphone 13 PRO', 'APPLE', 'APPLE', 2021, 5, LOAD_FILE('../site_MercadoFechado/images/iphone-13-pro-blue-select.png'), 'cor: azul cierra, 128GB RAM');
  /* Anuncios */

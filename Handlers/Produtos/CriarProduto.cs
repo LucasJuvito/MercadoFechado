@@ -38,12 +38,12 @@ namespace ServidorTestes.Handlers.Produtos
 
             Produto produto = new Produto()
             {
-                Nome = dict["Nome"],
-                Marca = dict["Marca"],
-                Fabricante = dict["Fabricante"],
-                Ano = Convert.ToInt32(dict["AnoFabricacao"]),
-                IDCategoria = Convert.ToInt32(dict["IDCategoria"]),
-                Descricao = dict["Descricao"],
+                Nome = dict["nome_produto"],
+                Marca = dict["marca_produto"],
+                Fabricante = dict["fabricante_produto"],
+                Ano = Convert.ToInt32(dict["ano_produto"]),
+                IDCategoria = Convert.ToInt32(dict["categoria_produto"]),
+                Descricao = dict["descricao_produto"],
                 Imagem = imagem.ToArray()
             };
             if(!produto.AdicionarAoBanco())
@@ -52,6 +52,8 @@ namespace ServidorTestes.Handlers.Produtos
                 return;
             }
 
+            Console.WriteLine();
+            context.Response.Redirect(context.Request.UrlReferrer + "vender.html?id_produto=" + produto.ID + "#cadastrar-anuncio" );
             Console.WriteLine(JsonConvert.SerializeObject(dict));
 
         }

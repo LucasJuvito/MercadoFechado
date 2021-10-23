@@ -17,28 +17,6 @@ function CriarDivContainer(nomeautor, comentario) {
     return container;
 }
 
-function GerarEstrelinhas(pontuacao) {
-    var qntEstrelas = 0;
-    var ret = "";
-
-    while(pontuacao - 1 >= 0) {
-        ret += '<i class="fas fa-star"></i>';
-        qntEstrelas++;
-        pontuacao--;
-    }
-
-    if(pontuacao > 0) {
-        ret += '<i class="fas fa-star-half-alt"></i>';
-        qntEstrelas++;
-    }
-
-    while(qntEstrelas < 5) {
-        ret += '<i class="far fa-star"></i>';
-        qntEstrelas++;
-    }
-    return ret;
-}
-
 ObterDetalhes(idAnuncio, (detalhes) => {
     var formatter = new Intl.NumberFormat('pt-BR', {
         style: 'currency',

@@ -11,21 +11,21 @@ using System.Threading.Tasks;
 
 namespace ServidorTestes.Handlers.Vendas
 {
-    class ListarVendasPorAnuncio
+    class ListarComprasPessoais
     {
         public static void ProcessContext(HttpListenerContext context, StreamWriter writer, StreamReader reader)
         {
-            string jsonStr = reader.ReadToEnd();
-            ListarVendasPorAnuncioRequest request = ListarVendasPorAnuncioRequest.FromJSON(jsonStr);
+            string token = context.Request.Headers.Get("Authorization");
 
-            if (request == null || !request.IsValid())
+            AcessoUsuario usuarioLogado = AcessoUsuario.BuscarToken(token);
+            if (usuarioLogado == null)
             {
-                writer.WriteLine(new BaseResponse() { Message = "Pedido inválido!" }.ToJSON());
+                writer.WriteLine(new BaseResponse() { Message = "Usuário não está logado!" }.ToJSON());
                 return;
             }
 
-            List<Venda> vendas = Venda.ListarVendas(request.IDAnuncio.Value);
-            ListarVendasResponse response = new ListarVendasResponse()
+            List<VendaCompleta> vendas = VendaCompleta.ListarComprasPessoais(usuarioLogado.IDUsuarioComum);
+            ListarVendasCompletasResponse response = new ListarVendasCompletasResponse()
             {
                 Vendas = vendas,
                 Success = true,

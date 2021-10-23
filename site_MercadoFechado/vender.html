@@ -17,9 +17,9 @@
 <body>
   <div class="container" >
 
-    <div class="content">   
-         
-      <div id="cadastrar-produto" >
+    <div class="content">
+      <div id="cadastrar-produto">
+        <form action="http://localhost:1890/produtos/criar" enctype="multipart/form-data" method="POST">
         <h1>Cadastre seu produto</h1> 
         <p> 
           <label for="nome_produto">Nome</label>
@@ -47,42 +47,51 @@
         </p>
 
         <p> 
-            <label for="descricao_produto">Descrição</label>
-            <input id="descricao_produto" name="descricao_produto" required="required" type="text" placeholder="branco, etc..."/>
-        </p>
+          <label for="descricao_produto">Descrição</label>
+          <input id="descricao_produto" name="descricao_produto" required="required" type="text" placeholder="branco, etc..."/>
+      </p>
+
+      <p> 
+        <label for="foto_produto">Foto do produto</label>
+        <input type="file" name="foto_produto" id="foto_produto" required="required">
+      </p>
         
         <p>
           <input type="submit" value="Próximo passo" onclick=""/> 
         </p>
-
+      </form>
         <p class="link">
             Já tem o produto cadastrado?
             <a href="anunciar-produto-existente.html#selecionar-produto">Anunciar</a>
           </p>
           
+          
       </div>
  
       <div id="cadastrar-anuncio" >
-        <h1>Anunciar</h1> 
-        <p> 
-          <label for="titulo_anuncio">Título</label>
-          <input id="titulo_anuncio" name="titulo_anuncio" required="required" type="text" placeholder="titulo"/>
-        </p>
-          
-        <p> 
-            <label for="valor_anuncio">Valor</label>
-            <input id="valor_anuncio" name="valor_anuncio" required="required" type="text" placeholder="valor"/>
-        </p>
+        <form action="http://localhost:1890/anuncios/criar" enctype="multipart/form-data" method="POST">
+          <input id="id_produto" name="id_produto" style="display: none"/>
+          <input id="token_acesso" name="token_acesso" style="display: none"/>
+          <h1>Anunciar</h1> 
+          <p> 
+            <label for="titulo_anuncio">Título</label>
+            <input id="titulo_anuncio" name="titulo_anuncio" required="required" type="text" placeholder="titulo"/>
+          </p>
+            
+          <p> 
+              <label for="valor_anuncio">Valor</label>
+              <input id="valor_anuncio" name="valor_anuncio" required="required" type="text" placeholder="valor"/>
+          </p>
 
-        <p> 
-            <label for="descricao_anuncio">Descrição</label>
-            <input id="descricao_anuncio" name="descricao_anuncio" required="required" type="text" placeholder="branco, etc..."/>
-        </p>
-        
-        <p> 
-          <input type="submit" value="Concluir!"/> 
-        </p>
+          <p> 
+              <label for="descricao_anuncio">Descrição</label>
+              <input id="descricao_anuncio" name="descricao_anuncio" required="required" type="text" placeholder="branco, etc..."/>
+          </p>
           
+          <p> 
+            <input type="submit" value="Concluir!"/> 
+          </p>
+      </form>
       </div>
       
 
@@ -91,5 +100,11 @@
   <!-- Linkando fonte do google -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="js/utils.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const idProduto = urlParams.get('id_produto');
+    document.getElementById("id_produto").value = idProduto;
+    document.getElementById("token_acesso").value = getCookie("token_acesso");
+  </script>
 </body>
 </html>

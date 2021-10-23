@@ -56,54 +56,24 @@
         <div id="meus-dados-container">
             <h1>Conta</h1>
             <div id="conta">
-                <div id="nome">
+                <div>
                     <h1>Nome:</h1>
-                    <p>nome de nome mesmo</p>
+                    <p id="nome-pessoa">nome de nome mesmo</p>
                 </div>
                 
-                <div id="cpf">
-                    <h1>CPF:</h1>
-                    <p>000.000.000-00</p>
+                <div>
+                    <h1 id="sigla-identificador">CPF:</h1>
+                    <p id="identificador">000.000.000-00</p>
                 </div>
                 
-                <div id="usuario">
-                    <h1>Usuários:</h1>
-                    <p>usuario_padrao</p>
+                <div>
+                    <h1>Usuário:</h1>
+                    <p id="usuario-logado">usuario_padrao</p>
                 </div>
             </div>
 
             <h1>Endereços</h1>
             <div id="enderecos">
-                <div class="endereco">
-                    <div id="cep">00000-000</div>
-                    <div id="estado">estado</div>
-                    <div id="cidade">cidade</div>
-                    <div id="bairro">bairro</div>
-                    <div id="quadra">quadra 1</div>
-                    <div id="numero">2</div>
-                    <div id="complemento">aquele casa lá</div>
-                </div>
-
-                <div class="endereco">
-                    <div id="cep">00000-000</div>
-                    <div id="estado">estado</div>
-                    <div id="cidade">cidade</div>
-                    <div id="bairro">bairro</div>
-                    <div id="quadra">quadra 1</div>
-                    <div id="numero">2</div>
-                    <div id="complemento">aquele casa lá</div>
-                </div>
-
-                <div class="endereco">
-                    <div id="cep">00000-000</div>
-                    <div id="estado">estado</div>
-                    <div id="cidade">cidade</div>
-                    <div id="bairro">bairro</div>
-                    <div id="quadra">quadra 1</div>
-                    <div id="numero">2</div>
-                    <div id="complemento">aquele casa lá</div>
-                </div>
-
                 <a href="adicionar-endereco.html" ><button id="adicionar-endereco">Adicionar<br>endereço</button></a>
             </div>
         </div>
@@ -143,8 +113,11 @@
     </footer>
     <!-- Linkando fonte do google -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/api/usuarios.js"></script>
+    <script src="js/api/enderecos.js"></script>
+    <script src="js/enderecos.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/global.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/perfil.js"></script>
 </body>
 </html>

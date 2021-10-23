@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using ServidorTestes.Banco;
 using ServidorTestes.Requests;
 using ServidorTestes.Responses;
@@ -11,36 +14,44 @@ namespace ServidorTestes.Handlers.Anuncios
     {
         public static void ProcessContext(HttpListenerContext context, StreamWriter writer, StreamReader reader)
         {
-            string jsonStr = reader.ReadToEnd();
-            CriarAnuncioRequest request = CriarAnuncioRequest.FromJSON(jsonStr);
-
-            if (request == null || !request.IsValid())
+            var data = context.Request.InputStream;
+            var streamContent = new StreamContent(data);
+            streamContent.Headers.ContentType = MediaTypeHeaderValue.Parse(context.Request.ContentType);
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            var provider = streamContent.ReadAsMultipartAsync().Result;
+            
+            foreach (var httpContent in provider.Contents)
             {
-                writer.WriteLine(new BaseResponse() { Message = "Pedido inválido!" }.ToJSON());
+                var fileName = httpContent.Headers.ContentDisposition.FileName;
+                if (string.IsNullOrWhiteSpace(fileName))
+                {
+                    dict.Add(httpContent.Headers.ContentDisposition.Name.Replace("\"", ""), httpContent.ReadAsStringAsync().Result.Replace("\"", ""));
+                    continue;
+                }
+            }
+
+            AcessoUsuario usuarioLogado = AcessoUsuario.BuscarToken(dict["token_acesso"]);
+            if (usuarioLogado == null)
+            {
+                writer.WriteLine(new BaseResponse() { Message = "Usuário não está logado!" }.ToJSON());
                 return;
             }
 
-            Anuncio anuncio = new Anuncio
+            Anuncio anuncio = new Anuncio()
             {
-                Titulo = request.Titulo,
-                Descricao = request.Descricao,
-                IDProduto = request.IDProduto.Value,
-                IDVendedor = request.IDVendedor.Value,
-                Valor = request.Valor.Value
+                Titulo = dict["titulo_anuncio"],
+                Valor = Double.Parse(dict["valor_anuncio"]),
+                Descricao = dict["descricao_anuncio"],
+                IDProduto = Int64.Parse(dict["id_produto"]),
+                IDVendedor = usuarioLogado.IDUsuarioComum
             };
-
-            if(!anuncio.AdicionarAoBanco())
+            if (!anuncio.AdicionarAoBanco())
             {
-                writer.WriteLine(new BaseResponse() { Message = "Não foi possível adicionar anúncio ao BD!" }.ToJSON());
+                writer.WriteLine(new BaseResponse() { Message = "Não foi possível adicionar ao banco!" }.ToJSON());
                 return;
             }
 
-            CriarAnuncioResponse response = new CriarAnuncioResponse() {
-                Anuncio = anuncio,
-                Success = true,
-                Message = "Anúncio adicionado com sucesso!"
-            };
-            writer.WriteLine(response.ToJSON());
+            context.Response.Redirect(context.Request.UrlReferrer + "");
         }
     }
 }

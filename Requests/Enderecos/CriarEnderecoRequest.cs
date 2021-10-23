@@ -16,7 +16,6 @@ namespace ServidorTestes.Requests
         public string Bairro { get; set; }
         public string Quadra { get; set; }
         public string Complemento { get; set; }
-        public long? IDProprietario { get; set; }
 
         public bool IsValid()
         {
@@ -25,7 +24,6 @@ namespace ServidorTestes.Requests
             if (Estado == null) return false;
             if (Cidade == null) return false;
             if (Quadra == null) return false;
-            if (IDProprietario == null) return false;
 
             return true;
         }

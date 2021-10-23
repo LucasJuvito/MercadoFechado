@@ -13,6 +13,7 @@ namespace ServidorTestes.Handlers.Vendas
         {
             string jsonStr = reader.ReadToEnd();
             string token = context.Request.Headers.Get("Authorization");
+
             EfetuarCompraRequest request = EfetuarCompraRequest.FromJSON(jsonStr);
             if (token == null || request == null || !request.IsValid())
             {
