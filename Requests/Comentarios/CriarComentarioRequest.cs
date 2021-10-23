@@ -9,12 +9,12 @@ namespace ServidorTestes.Requests
 {
     class CriarComentarioRequest
     {
+        public long? IDAnuncio { get; set; }
         public string Descricao { get; set; }
-        public long IDUserComum { get; set; }
-        public long IDAnuncio { get; set; }
 
         public bool IsValid()
         {
+            if (IDAnuncio == null) return false;
             if (Descricao == null) return false;
 
             return true;

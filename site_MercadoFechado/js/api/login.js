@@ -29,10 +29,7 @@ function DeslogarUsuario(token, onsuccess, onerror) {
         console.log(this.responseText);
         var data = JSON.parse(this.responseText);
         if (this.status == 200) {
-            if(data.Success)
-                onsuccess(data.Token);
-            else
-                onerror(data);
+            onsuccess(data);
         }
     };
     xhr.setRequestHeader('Content-Type', 'application/json');

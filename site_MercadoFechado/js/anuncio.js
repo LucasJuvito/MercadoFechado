@@ -17,6 +17,14 @@ function CriarDivContainer(nomeautor, comentario) {
     return container;
 }
 
+function ClicarAdicionarComentario() {
+    var texto = document.getElementById("texto-comentario").value;
+    AdicionarComentario(getCookie("token_acesso"), idAnuncio, texto, (resposta) => {
+        console.log(resposta);
+    });
+    return container;
+}
+
 ObterDetalhes(idAnuncio, (detalhes) => {
     var formatter = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
