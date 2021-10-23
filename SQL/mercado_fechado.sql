@@ -27,14 +27,15 @@ CREATE TABLE estado (
 CREATE TABLE endereco(
     id_endereco INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     cep VARCHAR(9) NOT NULL,
-    sigla_estado TINYTEXT NOT NULL,
+    sigla_estado CHAR(2) NOT NULL,
     cidade TINYTEXT NOT NULL,
     bairro TINYTEXT,
     quadra TINYTEXT NOT NULL,
     numero INT NOT NULL,
     complemento TINYTEXT,
     id_proprietario INT NOT NULL,
-    FOREIGN KEY (id_proprietario) REFERENCES usuario_comum(id_user_comum) ON UPDATE CASCADE
+    FOREIGN KEY (id_proprietario) REFERENCES usuario_comum(id_user_comum) ON UPDATE CASCADE,
+    FOREIGN KEY (sigla_estado) REFERENCES estado(sigla) ON UPDATE CASCADE
 );
 
 CREATE TABLE usuario_pes_juridica(
