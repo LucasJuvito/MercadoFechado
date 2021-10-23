@@ -1,3 +1,9 @@
+function ClicarDeslogar() {
+    DeslogarUsuario(getCookie("token_acesso"), (resposta) => {
+        console.log(resposta);
+    });
+}
+
 ObterDadosUsuarioLogado(getCookie("token_acesso"), (dados) => {
     document.getElementById("nome-pessoa").innerText = dados.Nome;
     document.getElementById("sigla-identificador").innerText = dados.TipoPessoa == 1 ? "CPF:" : "CNPJ:";

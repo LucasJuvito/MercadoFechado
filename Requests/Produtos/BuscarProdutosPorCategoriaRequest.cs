@@ -9,7 +9,7 @@ namespace ServidorTestes.Requests
 {
     class BuscarProdutosPorCategoriaRequest
     {
-        public string Categoria { get; set; }
+        public long? Categoria { get; set; }
 
         public bool IsValid()
         {

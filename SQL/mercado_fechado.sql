@@ -6,17 +6,17 @@ DROP DATABASE IF EXISTS mercado_fechado;
 CREATE DATABASE mercado_fechado;
 USE mercado_fechado;
 
+CREATE TABLE usuario_comum(
+    id_user_comum INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    login VARCHAR(50) NOT NULL UNIQUE,
+    senha TINYTEXT NOT NULL
+);
+
 CREATE TABLE acesso_usuario (
     token CHAR(32) NOT NULL PRIMARY KEY,
     id_user_comum INTEGER,
     data_expiracao DATETIME DEFAULT (NOW() + INTERVAL 24 HOUR),
     FOREIGN KEY (id_user_comum) REFERENCES usuario_comum(id_user_comum)
-);
-
-CREATE TABLE usuario_comum(
-    id_user_comum INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    login VARCHAR(50) NOT NULL UNIQUE,
-    senha TINYTEXT NOT NULL
 );
 
 CREATE TABLE estado (
@@ -87,8 +87,8 @@ CREATE TABLE comentarios(
     descricao VARCHAR(300) NOT NULL,
     id_user_comum INT NOT NULL,
     id_anuncio INT NOT NULL,
-    FOREIGN KEY (id_user_comum) REFERENCES usuario_comum(id_user_comum) ON UPDATE CASCADE,
-    FOREIGN KEY (id_anuncio) REFERENCES anuncio(id_anuncio) ON UPDATE CASCADE
+    FOREIGN KEY (id_user_comum) REFERENCES usuario_comum(id_user_comum) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (id_anuncio) REFERENCES anuncio(id_anuncio) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE venda(
@@ -98,7 +98,8 @@ CREATE TABLE venda(
     comprador INT NOT NULL,
     valor INT NOT NULL,
     endereco_entrega INT NOT NULL,
-    id_anuncio INT NOT NULL,
+    id_anuncio INT,
+    FOREIGN KEY (id_anuncio) REFERENCES anuncio(id_anuncio) ON UPDATE CASCADE ON DELETE SET NULL,
     FOREIGN KEY (vendedor) REFERENCES usuario_comum(id_user_comum) ON UPDATE CASCADE,
     FOREIGN KEY (comprador) REFERENCES usuario_comum(id_user_comum) ON UPDATE CASCADE,
     FOREIGN KEY (endereco_entrega) REFERENCES endereco(id_endereco)
@@ -111,6 +112,23 @@ CREATE TABLE avaliacao(
     id_venda INT NOT NULL,
     FOREIGN KEY (id_venda) REFERENCES venda(id_venda) ON UPDATE CASCADE
 );
+
+CREATE VIEW dados_agrupados_venda AS 
+    SELECT cnpj IS NOT NULL AS eh_empresa, 
+       venda.id_venda,
+       venda.id_anuncio, 
+       id_produto,
+       titulo, 
+       venda_hora, 
+       nome, 
+       nome_fantasia, 
+       venda.vendedor,
+       venda.comprador,
+       COALESCE(pontuacao,-1) AS pontuacao FROM venda 
+    LEFT JOIN anuncio ON venda.id_anuncio = anuncio.id_anuncio 
+    LEFT JOIN usuario_pes_fisica ON id_pes_fisica = vendedor 
+    LEFT JOIN usuario_pes_juridica ON id_pes_juridica = vendedor 
+    LEFT JOIN avaliacao ON avaliacao.id_venda = venda.id_venda;
 
 /* Usuários */ 
 INSERT INTO usuario_comum (login, senha) VALUES ('user1','123');

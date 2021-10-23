@@ -39,11 +39,11 @@ namespace ServidorTestes.Banco
                 VendaCompleta venda = new VendaCompleta
                 {
                     IDVenda = reader.GetInt64(0),
-                    IDProduto = reader.GetInt64(1),
-                    IDAnuncio = reader.GetInt64(2),
+                    IDProduto = reader.IsDBNull(1) ? -1 : reader.GetInt64(1),
+                    IDAnuncio = reader.IsDBNull(2) ? -1 : reader.GetInt64(2),
                     IDVendedor = reader.GetInt64(3),
                     IDComprador = reader.GetInt64(4),
-                    Titulo = reader.GetString(5),
+                    Titulo = reader.IsDBNull(5) ? "Anúncio deletado" : reader.GetString(5),
                     HorarioVenda = reader.GetDateTime(6),
                     Pontuacao = reader.GetDouble(7)
                 };
@@ -73,11 +73,11 @@ namespace ServidorTestes.Banco
                 VendaCompleta venda = new VendaCompleta
                 {
                     IDVenda = reader.GetInt64(0),
-                    IDProduto = reader.GetInt64(1),
-                    IDAnuncio = reader.GetInt64(2),
+                    IDProduto = reader.IsDBNull(1) ? -1 : reader.GetInt64(1),
+                    IDAnuncio = reader.IsDBNull(2) ? -1 : reader.GetInt64(2),
                     IDVendedor = reader.GetInt64(3),
                     IDComprador = reader.GetInt64(4),
-                    Titulo = reader.GetString(5),
+                    Titulo = reader.IsDBNull(5) ? "Anúncio deletado" : reader.GetString(5),
                     HorarioVenda = reader.GetDateTime(6),
                     Pontuacao = reader.GetDouble(7)
                 };

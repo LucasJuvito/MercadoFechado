@@ -19,66 +19,24 @@
 
     <div class="content">
         <div id="selecionar-produto">
-        <h1>Selecionar produto</h1>
+          <h1>Produtos</h1>
+          <h2>Selecionar Categoria</h2>
+          <select id="selecao-categoria" onchange="AoMudarCategoria()">
+            <option value="none">...</option>
+          </select>
+          <h2>Selecionar Produto</h2>
+          <div id="lista">
+          </div>
 
-        <div id="lista">
-            <div class="produto">
-                <div>nome</div>
-                <div>marca</div>
-                <div>fabricante</div>
-                <div>anofabricacao</div>
-                <div>descricao</div>
-            </div>
-
-            <div class="produto">
-                <div>nome</div>
-                <div>marca</div>
-                <div>fabricante</div>
-                <div>anofabricacao</div>
-                <div>descricao</div>
-            </div>
-
-            <div class="produto">
-                <div>nome</div>
-                <div>marca</div>
-                <div>fabricante</div>
-                <div>anofabricacao</div>
-                <div>descricao</div>
-            </div>
-            <div class="produto">
-                <div>nome</div>
-                <div>marca</div>
-                <div>fabricante</div>
-                <div>anofabricacao</div>
-                <div>descricao</div>
-            </div>
-
-            <div class="produto">
-                <div>nome</div>
-                <div>marca</div>
-                <div>fabricante</div>
-                <div>anofabricacao</div>
-                <div>descricao</div>
-            </div>
-
-            <div class="produto">
-                <div>nome</div>
-                <div>marca</div>
-                <div>fabricante</div>
-                <div>anofabricacao</div>
-                <div>descricao</div>
-            </div>
-        </div>
-
-        
-        <p>
-          <input type="submit" value="Próximo passo" onclick=""/> 
-        </p>
-  
-        <p class="link">
-          Não encontrou o produto?
-          <a href="vender.html#cadastrar-produto">Cadastrar produto</a>
-        </p>
+          
+          <p>
+            <input type="submit" value="Próximo passo" onclick="ProximoPasso()"/> 
+          </p>
+    
+          <p class="link">
+            Não encontrou o produto?
+            <a href="vender.html#cadastrar-produto">Cadastrar produto</a>
+          </p>
 
         </div>
       
@@ -87,6 +45,58 @@
   </div> 
   <!-- Linkando fonte do google -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="js/api/categorias.js"></script>
+  <script src="js/api/produto.js"></script>
   <script src="js/utils.js"></script>
+  <script src="js/anunciarproduto.js"></script>
 </body>
 </html>
+
+<!--
+  <div class="produto">
+                <div>nome</div>
+                <div>marca</div>
+                <div>fabricante</div>
+                <div>anofabricacao</div>
+                <div>descricao</div>
+            </div>
+
+            <div class="produto">
+                <div>nome</div>
+                <div>marca</div>
+                <div>fabricante</div>
+                <div>anofabricacao</div>
+                <div>descricao</div>
+            </div>
+
+            <div class="produto">
+                <div>nome</div>
+                <div>marca</div>
+                <div>fabricante</div>
+                <div>anofabricacao</div>
+                <div>descricao</div>
+            </div>
+            <div class="produto">
+                <div>nome</div>
+                <div>marca</div>
+                <div>fabricante</div>
+                <div>anofabricacao</div>
+                <div>descricao</div>
+            </div>
+
+            <div class="produto">
+                <div>nome</div>
+                <div>marca</div>
+                <div>fabricante</div>
+                <div>anofabricacao</div>
+                <div>descricao</div>
+            </div>
+
+            <div class="produto">
+                <div>nome</div>
+                <div>marca</div>
+                <div>fabricante</div>
+                <div>anofabricacao</div>
+                <div>descricao</div>
+            </div>
+-->

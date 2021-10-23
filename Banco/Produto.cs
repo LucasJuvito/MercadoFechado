@@ -50,15 +50,15 @@ namespace ServidorTestes.Banco
             }
         }
 
-        public static List<Produto> BuscarPorCategoria(string nome)
+        public static List<Produto> BuscarPorCategoria(long id)
         {
             using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
             connection.Open();
 
             using MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT id_produto, produto.nome, marca, fabricante, ano_fabricacao, descricao, id_categoria FROM produto " +
-                "JOIN categoria ON produto.id_categoria = categoria.id_categoria WHERE categoria.nome = @nome";
-            command.Parameters.AddWithValue("@nome", nome);
+            command.CommandText = "SELECT id_produto, nome, marca, fabricante, ano_fabricacao, descricao, id_categoria FROM produto " +
+                "WHERE id_categoria = @id";
+            command.Parameters.AddWithValue("@id", id);
 
             using MySqlDataReader reader = command.ExecuteReader();
             List<Produto> ret = new List<Produto>();

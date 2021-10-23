@@ -97,6 +97,28 @@ input:not([type="checkbox"]){
   transition: all 0.2s linear;
 }
 
+.selecionado{
+  background-color: rgba(59, 219, 59, 0.8)!important;
+  border: 2px solid rgb(22, 141, 22)!important;
+  color: black;
+  }
+  
+select {
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px;  
+  border: 1px solid #b2b2b2;
+  
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  
+  -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.1) inset;
+  box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.1) inset;
+  
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
 /*estilo do botão submit */
 input[type="submit"]{
     width: 100%!important;

@@ -37,6 +37,19 @@ namespace ServidorTestes.Banco
             }
         }
 
+        public bool RemoverDoBanco()
+        {
+            using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+            connection.Open();
+
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "DELETE FROM acesso_usuario " +
+                "WHERE token = @token";
+            command.Parameters.AddWithValue("@token", Token);
+
+            return command.ExecuteNonQuery() > 0;
+        }
+
         public static AcessoUsuario BuscarToken(string token)
         {
             if (token == null)

@@ -69,6 +69,7 @@ namespace ServidorTestes
             api.AddAction("/vendas/listar/poranuncio", Handlers.Vendas.ListarVendasPorAnuncio.ProcessContext);
 
             api.AddAction("/login/logar", Handlers.Login.LogarUsuario.ProcessContext);
+            api.AddAction("/login/deslogar", Handlers.Login.DeslogarUsuario.ProcessContext);
             api.Listen();
         }
     }

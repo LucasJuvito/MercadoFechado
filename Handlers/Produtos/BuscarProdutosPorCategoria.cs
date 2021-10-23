@@ -19,7 +19,7 @@ namespace ServidorTestes.Handlers.Produtos
                 return;
             }
 
-            List<Produto> produtos = Produto.BuscarPorCategoria(request.Categoria);
+            List<Produto> produtos = Produto.BuscarPorCategoria(request.Categoria.Value);
 
             BuscarProdutosPorCategoriaResponse response = new BuscarProdutosPorCategoriaResponse()
             {
