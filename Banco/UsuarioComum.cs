@@ -9,9 +9,9 @@ namespace ServidorTestes.Banco
 {
     class UsuarioComum
     {
-        public long ID;
-        public string Login;
-        public string Senha;
+        public long ID { get; set; }
+        public string Login { get; set; }
+        public string Senha { get; set; }
 
         public bool AdicionarAoBanco()
         {

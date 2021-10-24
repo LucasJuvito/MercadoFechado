@@ -110,6 +110,13 @@ section#esp{
     font-family: 'Roboto';
     font-weight: 300;
     padding: 10px;
+    outline: 0;
+    background-color: transparent;
+    cursor: text;
+}
+
+#anuncio .titulo button{
+    background-color: red;
 }
 
 #anuncio .content {
@@ -248,4 +255,13 @@ section#esp{
     background-color: green;
     align-self: flex-start;
     width: 100px;
+}
+
+.titulo-editavel {
+    border: 1px solid gray;
+    border-radius: 9px;
+}
+
+.btn-delete {
+    color: white;
 }

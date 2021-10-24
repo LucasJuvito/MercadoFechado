@@ -29,6 +29,40 @@ function CriarDivContainer(idcomentario, idautor, nomeautor, comentario) {
     return container;
 }
 
+function ClicarSalvarDescricao() {
+    var novaDescricao = document.getElementById("texto-descricao").innerText;
+    AtualizarDescricaoAnuncio(getCookie("token_acesso"), idAnuncio, novaDescricao, (dados) => {
+        alert(dados.Message);
+    });
+}
+
+function ClicarSalvarTitulo() {
+    var novoTitulo = document.getElementById("titulo").innerText;
+    AtualizarTituloAnuncio(getCookie("token_acesso"), idAnuncio, novoTitulo, (dados) => {
+        if(dados.Success) {
+            document.getElementById("titulo").classList = "titulo";
+            document.getElementById("titulo").contentEditable = false;
+            document.getElementById("btn-editar-titulo").innerText = "Editar";
+            document.getElementById("btn-editar-titulo").onclick = ClicarEditarTitulo;
+        }
+        alert(dados.Message);
+    });
+}
+
+function ClicarEditarTitulo() {
+    document.getElementById("titulo").classList = "titulo titulo-editavel";
+    document.getElementById("titulo").contentEditable = true;
+    document.getElementById("btn-editar-titulo").innerText = "Salvar";
+    document.getElementById("btn-editar-titulo").onclick = ClicarSalvarTitulo;
+}
+
+function ClicarEditarDescricao() {
+    document.getElementById("texto-descricao").classList = "texto-descricao texto-descricao-editavel";
+    document.getElementById("texto-descricao").contentEditable = true;
+    document.getElementById("btn-editar-descricao").innerText = "Salvar";
+    document.getElementById("btn-editar-descricao").onclick = ClicarSalvarDescricao;
+}
+
 function ClicarAdicionarComentario() {
     var texto = document.getElementById("texto-comentario").value;
     AdicionarComentario(getCookie("token_acesso"), idAnuncio, texto, (resposta) => {
@@ -46,7 +80,12 @@ ObterDetalhes(idAnuncio, (detalhes) => {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
     });
-    
+
+    if(getCookie("id_usuario_logado") != null && detalhes.IDVendedor == parseInt(getCookie("id_usuario_logado"))) {
+        document.getElementById("btn-editar-titulo").style.display = 'block';
+        document.getElementById("btn-editar-descricao").style.display = 'block';
+    }
+
     document.getElementById("btn_comprar").href = "./compra.html?id_anuncio=" + idAnuncio;
     document.getElementById("titulo").innerText = detalhes.Titulo;
     document.getElementById("texto-descricao").innerText = detalhes.Descricao;

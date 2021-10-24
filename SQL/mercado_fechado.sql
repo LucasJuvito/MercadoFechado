@@ -39,15 +39,15 @@ CREATE TABLE endereco(
 );
 
 CREATE TABLE usuario_pes_juridica(
-    id_pes_juridica INT NOT NULL PRIMARY KEY,
-    cnpj VARCHAR(18) NOT NULL UNIQUE,
+    cnpj VARCHAR(18) PRIMARY KEY,
+    id_pes_juridica INT UNIQUE,
     nome_fantasia TINYTEXT NOT NULL,
     FOREIGN KEY (id_pes_juridica) REFERENCES usuario_comum(id_user_comum) ON UPDATE CASCADE
 );
 
 CREATE TABLE usuario_pes_fisica(
-    id_pes_fisica INT NOT NULL PRIMARY KEY,
-    cpf VARCHAR(14) NOT NULL UNIQUE,
+    cpf VARCHAR(14) PRIMARY KEY,
+    id_pes_fisica INT UNIQUE,
     nome TINYTEXT NOT NULL,
     data_nascimento DATE NOT NULL,
     FOREIGN KEY (id_pes_fisica) REFERENCES usuario_comum(id_user_comum) ON UPDATE CASCADE

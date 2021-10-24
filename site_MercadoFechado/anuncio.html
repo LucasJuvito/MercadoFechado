@@ -42,7 +42,10 @@
   <!-- lista de anuncios -->
   <section id="anuncio">
     <div id="anuncio-container">
-      <div id="titulo" class="titulo">PlayStation 5 muito barato, mas é barato mesmo!</div>
+      <div style="display: inline-flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+        <div id="titulo" class="titulo" contentEditable="false">PlayStation 5 muito barato, mas é barato mesmo!</div>
+        <button class="btn-delete" style="height: 30px; display: none" onclick="ClicarEditarTitulo()" id="btn-editar-titulo">Editar</button>
+      </div>
       <div class="content">
         <img id="img-produto" src="/images/PS5DigitalEdition.png" alt="">
     
@@ -53,8 +56,11 @@
         </div>
       </div>
       <div class="descricao">
-        <h3>Descrição</h3>
-        <p id="texto-descricao"></p>
+        <div style="display: inline-flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+          <h3>Descrição</h3>
+          <button id="btn-editar-descricao" class="btn-delete" style="height: 30px; display: none" onclick="ClicarEditarDescricao()">Editar</button>
+        </div>
+        <p id="texto-descricao" class="texto-descricao" contenteditable="false"></p>
       </div>
 
       <div id="avaliacoes" class="comentarios">

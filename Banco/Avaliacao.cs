@@ -68,7 +68,7 @@ namespace ServidorTestes.Banco
             connection.Open();
 
             using MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT pontuacao, comentario FROM venda WHERE id_venda = @id;";
+            command.CommandText = "SELECT pontuacao, comentario FROM avaliacao WHERE id_venda = @id;";
             command.Parameters.AddWithValue("@id", idVenda);
 
             using MySqlDataReader reader = command.ExecuteReader();

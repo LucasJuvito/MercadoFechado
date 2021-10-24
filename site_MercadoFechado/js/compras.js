@@ -28,10 +28,17 @@ function CriarDivCompra(venda) {
 
     var pontuacao = parseInt(venda.Pontuacao);
     if(pontuacao >= 0)
-        baseStr = baseStr.replace("%avaliacao%", GerarEstrelinhas(pontuacao));
+        baseStr = baseStr.replace("%avaliacao%", GerarEstrelinhas(pontuacao) + '<button class="btn-delete" onclick="ClicarDeletarAvaliacao(%id%)">Deletar</button>'.replace("%id%", venda.IDVenda));
     else
         baseStr = baseStr.replace("%avaliacao%", '<a href="./avaliar.html?id_venda=' + venda.IDVenda + '">Avaliar</a>');
     return baseStr;
+}
+
+function ClicarDeletarAvaliacao(idvenda) {
+    DeletarAvaliacao(getCookie("token_acesso"), idvenda, (resposta) => {
+        console.log(resposta);
+        document.location.reload();
+    });
 }
 
 ObterComprasUsuarioLogado(getCookie("token_acesso"), (dados) => {

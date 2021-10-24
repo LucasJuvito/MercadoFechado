@@ -9,7 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServidorTestes.Handlers.Comentarios
+namespace ServidorTestes.Handlers.Avaliacoes
 {
     class DeletarAvaliacao
     {

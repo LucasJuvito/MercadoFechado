@@ -12,6 +12,8 @@ namespace ServidorTestes.Handlers.Anuncios
         public static void ProcessContext(HttpListenerContext context, StreamWriter writer, StreamReader reader)
         {
             string jsonStr = reader.ReadToEnd();
+            string token = context.Request.Headers.Get("Authorization");
+
             AtualizarTituloAnuncioRequest request = AtualizarTituloAnuncioRequest.FromJSON(jsonStr);
 
             if (request == null || !request.IsValid())
@@ -20,7 +22,21 @@ namespace ServidorTestes.Handlers.Anuncios
                 return;
             }
 
-            if (!Anuncio.AtualizarTitulo(request.IDAnuncio.Value, request.Titulo))
+            AcessoUsuario usuarioLogado = AcessoUsuario.BuscarToken(token);
+            if (usuarioLogado == null)
+            {
+                writer.WriteLine(new BaseResponse() { Message = "Usuário não está logado!" }.ToJSON());
+                return;
+            }
+
+            Anuncio anuncio = Anuncio.BuscarPorID(request.IDAnuncio.Value);
+            if(anuncio == null || anuncio.IDVendedor != usuarioLogado.IDUsuarioComum)
+            {
+                writer.WriteLine(new BaseResponse() { Message = "Não foi possível encontrar anúncio no BD!" }.ToJSON());
+                return;
+            }
+
+            if (!anuncio.AtualizarTitulo(request.Titulo))
             {
                 writer.WriteLine(new BaseResponse() { Message = "Não foi possível atualizar anúncio no BD!" }.ToJSON());
                 return;

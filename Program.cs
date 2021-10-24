@@ -62,6 +62,7 @@ namespace ServidorTestes
 
             api.AddAction("/avaliacoes/criar", Handlers.Avaliacoes.CriarAvaliacao.ProcessContext);
             api.AddAction("/avaliacoes/listar", Handlers.Avaliacoes.ListarAvaliacoes.ProcessContext);
+            api.AddAction("/avaliacoes/deletar", Handlers.Avaliacoes.DeletarAvaliacao.ProcessContext);
             api.AddAction("/avaliacoes/atualizar/pontuacao", Handlers.Avaliacoes.AtualizarPontuacao.ProcessContext);
             api.AddAction("/avaliacoes/atualizar/comentario", Handlers.Avaliacoes.AtualizarComentario.ProcessContext);
 

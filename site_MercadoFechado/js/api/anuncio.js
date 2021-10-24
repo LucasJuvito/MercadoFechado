@@ -89,3 +89,43 @@ function DeletarComentario(token, id, onsuccess, onerror) {
         "ID" : parseInt(id)
     }));
 }
+
+function AtualizarTituloAnuncio(token, id, titulo, onsuccess, onerror) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:1890/anuncios/atualizar/titulo", true);
+    xhr.onreadystatechange = function () {
+        if (this.readyState != 4) return;
+
+        if (this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+            onsuccess(data);
+        }
+    };
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Authorization', token);
+    xhr.send(JSON.stringify({
+        "IDAnuncio" : parseInt(id),
+        "Titulo": titulo
+    }));
+}
+
+function AtualizarDescricaoAnuncio(token, id, descricao, onsuccess, onerror) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:1890/anuncios/atualizar/descricao", true);
+    xhr.onreadystatechange = function () {
+        if (this.readyState != 4) return;
+
+        if (this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+            onsuccess(data);
+        }
+    };
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Authorization', token);
+    xhr.send(JSON.stringify({
+        "IDAnuncio" : parseInt(id),
+        "Descricao": descricao
+    }));
+}

@@ -1,4 +1,4 @@
-function CriarDivEndereco(endereco) {
+function CriarDivEndereco(endereco, redicionarEdit) {
     var baseStr = `
         <div id="endereco-%id%" class="endereco" onclick="SelecionarDiv(%idclick%)">
             <div>%cep%</div>

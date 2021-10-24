@@ -45,7 +45,7 @@ namespace ServidorTestes.Banco
             }
         }
 
-        public static bool AtualizarTitulo(long idAnuncio, string titulo)
+        public bool AtualizarTitulo(string novoTitulo)
         {
             try
             {
@@ -54,8 +54,8 @@ namespace ServidorTestes.Banco
 
                 using MySqlCommand command = connection.CreateCommand();
                 command.CommandText = "UPDATE anuncio SET titulo = @titulo WHERE id_anuncio = @id";
-                command.Parameters.AddWithValue("@titulo", titulo);
-                command.Parameters.AddWithValue("@id", idAnuncio);
+                command.Parameters.AddWithValue("@titulo", novoTitulo);
+                command.Parameters.AddWithValue("@id", ID);
 
                 if (command.ExecuteNonQuery() != 1)
                     return false;
@@ -69,7 +69,7 @@ namespace ServidorTestes.Banco
             }
         }
 
-        public static bool AtualizarDescricao(long idAnuncio, string descricao)
+        public bool AtualizarDescricao(string descricao)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace ServidorTestes.Banco
                 using MySqlCommand command = connection.CreateCommand();
                 command.CommandText = "UPDATE anuncio SET descricao = @descricao WHERE id_anuncio = @id";
                 command.Parameters.AddWithValue("@descricao", descricao);
-                command.Parameters.AddWithValue("@id", idAnuncio);
+                command.Parameters.AddWithValue("@id", ID);
 
                 if (command.ExecuteNonQuery() != 1)
                     return false;
