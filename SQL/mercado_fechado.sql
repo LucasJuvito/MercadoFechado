@@ -266,3 +266,10 @@ INSERT INTO avaliacao (pontuacao, comentario, id_venda)
  VALUES (5, 'Produto incrível', 4);
 INSERT INTO avaliacao (pontuacao, comentario, id_venda)
  VALUES (0.5, 'Não gostei', 5);
+
+/* Tokens de Login */
+INSERT INTO acesso_usuario (token, id_user_comum, data_expiracao) VALUES ('f52ab92457b1a97c1dbbc794de8dea8e', 1, NOW() + INTERVAL 2 HOUR);
+INSERT INTO acesso_usuario (token, id_user_comum, data_expiracao) VALUES ('263674f3b69459e3f1d42bccb8996777', 2, NOW() + INTERVAL 2 HOUR);
+INSERT INTO acesso_usuario (token, id_user_comum, data_expiracao) VALUES ('5daed7a0c4c24955efac805ae9a227ea', 3, NOW() + INTERVAL 2 HOUR);
+INSERT INTO acesso_usuario (token, id_user_comum, data_expiracao) VALUES ('4217696c91eddd16d83bc5c51377f84b', 4, NOW() + INTERVAL 2 HOUR);
+INSERT INTO acesso_usuario (token, id_user_comum, data_expiracao) VALUES ('cf9ea7177a0d5ada66b42af6b3b1136f', 5, NOW() + INTERVAL 2 HOUR);
