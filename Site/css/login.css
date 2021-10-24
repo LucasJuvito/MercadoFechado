@@ -1,0 +1,301 @@
+/* importando fontes do google */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+/* CSS reset */
+*, *:before, *:after { 
+    margin:0;
+    padding:0;
+    font-family: 'Roboto';
+  }
+   
+/* remove a linha dos links */
+a{
+  text-decoration: none;
+}
+
+.invalido {
+  background-color: rgba(80, 0, 0, 0.479);
+}
+
+/* esconde as ancoras da tela */
+a.links{
+  display: none;
+}
+
+.content{
+  width: 500px;
+  min-height: 560px;    
+  margin: 0px auto;
+  position: relative;   
+}
+
+/* formatando o cabeçalho dos formulários */
+h1{
+  font-size: 48px;
+  color: rgb(0, 0, 0);
+  padding: 10px 0;
+  font-family: 'Roboto';
+  font-weight: 300;
+  text-align: center;
+  padding-bottom: 30px;
+}
+h1:after{
+  content: ' ';
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin-top: 10px;
+  background: rgb(200, 200, 200); 
+  background: rgb(200, 200, 200); 
+}
+
+h2{
+  margin: 10px 0px;
+  font-family: 'Roboto';
+  font-weight: 300;
+}
+
+p{
+  margin-bottom:15px;
+}
+p:first-child{
+  margin: 0px;
+}
+label{
+  color: rgb(134, 134, 134);
+  position: relative;
+}
+
+/**** advanced input styling ****/
+/* placeholder */
+::-webkit-input-placeholder  {
+  color: #bebcbc; 
+  font-style: italic;
+}
+
+select {
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px;  
+  border: 1px solid #b2b2b2;
+  
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  
+  -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.1) inset;
+  box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.1) inset;
+  
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder{
+  color: #bebcbc;
+  font-style: italic;
+} 
+input {
+  outline: none;
+}
+
+input:not([type="checkbox"]){
+  width: 95%;
+  margin-top: 4px;
+  padding: 10px;  
+  border: 1px solid #b2b2b2;
+  
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  
+  -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.1) inset;
+  box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.1) inset;
+  
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+/*estilo do botão submit */
+input[type="submit"]{
+    width: 100%!important;
+    cursor: pointer;
+    margin-bottom: 10px;  
+    padding: 8px 5px;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background-color: rgb(87, 87, 87);
+    color: white;
+    font-size: 20px;
+    transition: .3s ease-in-out;
+}
+input[type="submit"]:hover{
+    background-color: rgb(39, 39, 39);
+    color: white;
+    font-weight: 400;
+}
+
+/*marcando os links para mudar de um formulário para outro */
+.link{
+  position: absolute;
+  background: rgb(233, 233, 233);
+  color: #7f7c7c;
+  left: 0px;
+  height: 20px;
+  width: 440px;
+  padding: 17px 30px 20px 30px;
+  font-size: 16px;
+  text-align: right;
+  border-top: 1px solid #dbe5e8;
+
+  -webkit-border-radius: 0 0  5px 5px;
+  border-radius: 0 0  5px 5px;
+}
+.link a {
+  font-weight: 300;
+  background: #f7f8f1;
+  padding: 6px;
+  color: black;
+  margin-left: 10px;
+  border: 1px solid rgb(136, 136, 136);
+
+  -webkit-border-radius: 4px;
+  border-radius: 4px;  
+
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s  ease-in-out;
+}
+.link a:hover {
+  background-color: rgb(58, 58, 58);
+  color: white;
+}
+
+/* estilos para para ambos os formulários */
+#cadastro, #cadastrocnpj, #login{
+  display: none;
+  position: absolute;
+  top: 50px;
+  width: 88%; 
+  padding: 18px 6% 60px 6%;
+  margin: 0 0 35px 0;
+  background: rgb(247, 247, 247);
+  border: 1px solid rgb(136, 136, 136);
+  
+  box-shadow: 5px;
+  border-radius: 5px;
+  
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-fill-mode: both;
+
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}
+
+#cadastroendereco{
+  position: absolute;
+  top: 50px;
+  width: 88%; 
+  padding: 18px 6% 60px 6%;
+  margin: 0 0 35px 0;
+  background: rgb(247, 247, 247);
+  border: 1px solid rgb(136, 136, 136);
+  
+  box-shadow: 5px;
+  border-radius: 5px;
+  
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-fill-mode: both;
+
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}
+
+#cadastro:target{
+  display: block;
+}
+
+#cadastrocnpj:target{
+  display: block;
+}
+
+#login:target{
+  display: block;
+}
+
+/* Efeito ao clicar no botão ( Ir para Login ) 
+#paracadastro:target ~ .content #cadastro,
+#paralogin:target ~ .content #login{
+  z-index: 2;
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+ 
+  -webkit-animation-delay: .1s;
+  animation-delay: .1s;
+}
+
+/* Efeito ao clicar no botão ( Ir para Cadastro cnpj) 
+#paracadastrocnpj:target ~ .content #cadastrocnpj,
+#paracadastrocnpj:target ~ .content #login{
+  z-index: 2;
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+ 
+  -webkit-animation-delay: .1s;
+  animation-delay: .1s;
+}
+ 
+/* Efeito ao clicar no botão ( Cadastre-se ) 
+#registro:target ~ .content #login,
+#paralogin:target ~ .content #cadastro{
+  -webkit-animation-name: fadeOutLeft;
+  animation-name: fadeOutLeft;
+}
+
+/*fadeInLeft
+@-webkit-keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/*fadeOutLeft
+@-webkit-keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+  }
+}
+
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+*/

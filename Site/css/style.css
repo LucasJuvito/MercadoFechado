@@ -1,0 +1,289 @@
+/* importando fontes do google */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+
+/* NAVBAR 
+------------------------------------------------------- */
+#navbar{
+    display: flex;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+    width: 100%;
+    position: fixed;
+    background-color: white;
+    transition: .5s ease-in-out;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .1);
+}
+
+.navbar-container{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+#navbar-header a{
+    font-size: 25px;
+    color: black;
+    font-weight: 300;
+}
+
+#navbar-menu .nav{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+#navbar-menu .nav li a{
+    color: black;
+    font-weight: 400;
+}
+
+/* BANNER 
+------------------------------------------------------- */
+section#banner{
+    width: 100%;
+    height: 400px;
+    background: url(../images/marketplace.jpg);
+    background-size: cover;
+}
+
+#banner-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .6);
+    color: white;
+    font-family: 'Roboto';
+}
+
+#banner-container h1{
+    font-size: 45px;
+    font-weight: 300;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+#banner-container p{
+    margin-bottom: 10px;
+    font-weight: 200;
+    background-color: rgba(59, 219, 59, 0.8);
+    padding: 5px 20px;
+    text-align: center;
+}
+
+#banner-container button{
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgb(39, 39, 39);
+    color: white;
+    font-size: 12px;
+    transition: .3s ease-in-out;
+}
+
+#banner-container button:hover{
+    background-color: #fff;
+    color: rgb(87, 87, 87);
+    font-weight: 400;
+}
+
+/* categorias
+------------------------------------------------------- */
+section#categorias{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+    width: 100%;
+    background-color: white;
+    padding: 40px 0px;
+} 
+
+#categorias-container{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+}
+
+#categorias-header{
+    text-align: center;
+    color: black;
+    margin-bottom: 30px;
+}
+
+#categorias-header h1{
+    font-size: 40px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+#categorias-header p{
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+
+/* FOOTER
+------------------------------------------------------- */
+footer{
+    display: flex;
+    background-color: rgb(233, 233, 233);
+    border-top: 1px solid rgb(200, 200, 200);
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+    flex-direction: column;
+    font-family: 'Roboto';
+}
+
+#footer-container{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#footer-container h2{
+    font-size: 24px;
+    font-weight: 300;
+    color:rgb(87, 87, 87);
+    margin-bottom: 30px;
+}
+
+#footer-container p{
+    color:rgb(134, 134, 134);
+}
+
+#footer-container a{
+    font-size: 25px;
+    margin-right: 10px;
+    color:rgb(87, 87, 87);
+}
+
+#footer-container #coluna1 .corpo a:last-of-type{
+    margin-right: 0px;
+}
+
+#footer-container a:hover{  
+    color:rgb(48, 48, 48);
+}
+
+#footer-container #coluna1, #coluna2, #coluna3{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 200px;
+    text-align: center;
+}
+
+#footer-container button{
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgb(87, 87, 87);
+    color: white;
+    font-size: 12px;
+    transition: .3s ease-in-out;
+}
+
+#footer-container button:hover{
+    background-color: rgb(58, 58, 58);
+    color: white;
+    font-weight: 400;
+}
+
+#direitos-autorais{
+    margin-top: 40px;
+    border-top: 1px solid rgb(200, 200, 200);
+    width: 60%;
+    text-align: center;
+    padding: 20px 0px;
+    color:rgb(87, 87, 87);
+}
+
+/*BREAKPOINTS MÁXIMOS
+------------------------------------------*/
+
+
+@media (max-width: 900px){
+    /* footer */
+    #footer-container{
+        justify-content: space-around;
+        width: 100%;
+    }
+    #coluna1, #coluna2{
+        margin-bottom: 60px;
+    }
+}
+
+@media (max-width: 650px){
+    /* footer */
+    #footer-container{
+        flex-direction: column;
+        width: auto;
+    }
+}
+
+/*ESTILIZANDO O SCROLL
+------------------------------------------*/
+body::-webkit-scrollbar {
+    width: 9px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(173, 173, 173, 0.2);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #4d8c12;
+    border-radius: 20px;
+}
+
+/*AUXILIARES
+------------------------------------------*/
+.transparente{
+    background-color: rgba(255, 255, 255, 0.6) !important;
+    
+}
+
+.opaco{
+    background-color: rgb(119, 119, 119) !important;
+    
+}
+
+/* btn_categorias */
+.btn_categorias{
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgb(87, 87, 87);
+    color: white;
+    font-size: 12px;
+    transition: .3s ease-in-out;
+    width:fit-content;
+    border: 1px solid transparent;
+    margin: 2px;
+}
+
+.btn_categorias a{
+    color: white;
+}
+
+.btn_categorias:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.btn_categorias:hover a{
+    color: black;
+}

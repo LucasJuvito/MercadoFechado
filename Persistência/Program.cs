@@ -13,19 +13,8 @@ namespace ServidorTestes
 {
     class Program
     {
-        static List<string> comandosValidos = new List<string>() { "drop", "select", "insert", "update" };
         static void Main(string[] args)
         {
-            int i = 0;
-            foreach(string file in Directory.GetFiles(@"C:\Users\Matt\source\repos\MercadoFechado\site_MercadoFechado\images"))
-            {
-                StringBuilder builder = new StringBuilder();
-                foreach(byte aux in File.ReadAllBytes(file))
-                {
-                    builder.Append(aux.ToString("x2"));
-                }
-                File.AppendAllText("c:/imagens.sql", "UPDATE produto SET foto = 0x" + builder.ToString() + " WHERE id_produto = " + ++i + ";\n");
-            }
             Global.Load();
 
             APIServer api = new APIServer(1890);

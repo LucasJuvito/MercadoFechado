@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+  <!-- definição de caracteres padrão -->
+  <meta charset="UTF-8">
+  <!-- compatibilidade com o Internet Explorer -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Responsividade mobile padrão -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Linkando fonts do Google-->
+  <link href='http://fonts.googleapis.com/css?family=Signika+Negative:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Kameron:400,700' rel='stylesheet' type='text/css'>
+  <!--Linkando Reset-->
+  <link rel="stylesheet" href="css/reset.css">
+  <!--Linkando CSS local-->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/anuncios.css">
+  <!-- Linkando Font Awesome -->
+  <script src="https://kit.fontawesome.com/3304733796.js" crossorigin="anonymous"></script>
+  <title>Anuncio</title>
+</head>
+<body>
+  <!--Menu de navegação-->
+  <nav id="navbar" class="opaco">
+    <div class="navbar-container">
+      <div id="navbar-header">
+        <a href="index.html" class="navbar-brand">Mercado Fechado</a>
+      </div>
+      <div id="navbar-menu">
+        <ul class="nav">
+          <li><a href="index.html#categorias">Categorias</a></li>
+          <li><a id="botaologin" href="login.html#login">Entrar</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <section id="esp">
+  </section>
+
+  <!-- lista de anuncios -->
+  <section id="anuncio">
+    <div id="anuncio-container">
+      <div style="display: inline-flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+        <div id="titulo" class="titulo" contentEditable="false">PlayStation 5 muito barato, mas é barato mesmo!</div>
+        <button class="btn-delete" style="height: 30px; display: none" onclick="ClicarEditarTitulo()" id="btn-editar-titulo">Editar</button>
+      </div>
+      <div class="content">
+        <img id="img-produto" src="/images/PS5DigitalEdition.png" alt="">
+    
+        <div class="preco">
+          <p>Preço unitário</p><br>
+          <p id="preco-produto">R$ 1000</p>
+          <a id="btn_comprar" href="compra.html"><button class="btn_comprar">Comprar</button></a>
+        </div>
+      </div>
+      <div class="descricao">
+        <div style="display: inline-flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+          <h3>Descrição</h3>
+          <button id="btn-editar-descricao" class="btn-delete" style="height: 30px; display: none" onclick="ClicarEditarDescricao()">Editar</button>
+        </div>
+        <p id="texto-descricao" class="texto-descricao" contenteditable="false"></p>
+      </div>
+
+      <div id="avaliacoes" class="comentarios">
+        <h3>Avaliações</h3>
+      </div>
+
+      <div id="comentarios" class="comentarios">
+        <h3>Comentários</h3>
+      </div>
+      <div id="adicionar-comentario" class="adicionar-comentario comentarios">
+        <h3>Deseja adicionar um novo comentário?</h3>
+        <textarea id="texto-comentario" class="add-comentario-textarea" type="text"></textarea>
+        <button class="btn_comprar" style="margin-top: 10px;background: rgb(87, 87, 87);" onclick="ClicarAdicionarComentario()">Adicionar</button>
+      </div>
+
+    </div>
+
+        
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div id="footer-container">
+      <div id="coluna1">
+        <h2>O Projeto</h2>
+        <p>
+          Universidade de Brasília <br>
+          Instituto de Ciências Exatas <br>
+          Departamento de Ciência da Computação <br><br>
+          Disciplina: Banco de Dados <br>
+        </p>
+      </div>
+      <div id="coluna2">
+        <p>
+          Professora<br>
+          Maristela de Holanda<br><br>
+          Alunos<br>
+          Lucas de Azevedo Juvito 190047101<br>
+          Mateus da Silva Souza 190035072<br><br>
+          Ano: 2021/1<br>
+        </p>
+      </div>
+      <div id="coluna3">
+        <h2>Suporte</h2>
+        <p>Encontrou algum problema? Entre em contato com a nossa equipe técnica!</p>
+        <button>Fale conosco</button>
+      </div>
+    </div>
+    <div id="direitos-autorais">
+      Todos os direitos reservados
+    </div>
+  </footer>
+
+  <!-- Linkando fonte do google -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/api/usuarios.js"></script>
+  <script src="js/api/anuncio.js"></script>
+  <script src="js/anuncio.js"></script>
+</body>
+</html>

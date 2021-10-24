@@ -1,0 +1,267 @@
+/* importando fontes do google */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+/* BANNER 
+------------------------------------------------------- */
+section#banner{
+    height: 300px;
+    background: rgb(87, 87, 87);
+}
+
+/* ANUNCIOS
+------------------------------------------------------- */
+
+#anuncios{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+    width: 100%;
+    background-color: white;
+    padding: 40px 0px;
+}
+
+#anuncios-container{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+	margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+/* BOX 
+------------------------------------------------------- */
+.box{
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid rgba(87, 87, 87, 0);
+}
+.box:hover{
+    cursor: pointer;
+    border: 1px solid rgb(87, 87, 87);
+    border-radius: 5px;
+}
+
+.box .box-image img {
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.box .box-detalhe{
+    color: black;
+    width: 150px;
+    height: 60px;
+}
+
+.box .valor{
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 24px;
+}
+
+.box .descricao{
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 16px;
+    max-width: 150px; 
+    overflow: hidden;  
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical; 
+}
+
+/* ANUNCIO
+------------------------------------------------------- */
+section#esp{
+    height: 70px;
+    background: rgb(87, 87, 87);
+}
+#anuncio{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+    width: 100%;
+    background-color: white;
+    padding: 40px 0px;
+    
+}
+
+#anuncio-container{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+	margin: 0 auto;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+#anuncio .titulo{
+    font-size: 28px;
+    font-family: 'Roboto';
+    font-weight: 300;
+    padding: 10px;
+    outline: 0;
+    background-color: transparent;
+    cursor: text;
+}
+
+#anuncio .titulo button{
+    background-color: red;
+}
+
+#anuncio .content {
+    margin: 15px;
+    width: 90%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    
+}
+
+#anuncio .content img{
+    width: 30%;
+    height: 40%;
+}
+
+#anuncio .content .preco{
+    height: 200px;
+    border-left: 2px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#anuncio .content .preco p{
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.btn_comprar{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(87, 87, 87);
+    color: white;
+    font-size: 18px;
+    transition: .3s ease-in-out;
+    width:fit-content;
+    border: 1px solid transparent;
+    margin: 2px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.btn-delete {
+    margin-left: 10px;
+    padding: 2px;
+    border-radius: 5px;
+    background-color: rgb(87, 87, 87);
+}
+
+.btn_comprar a{
+    color: white;
+}
+
+.btn_comprar:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.btn_comprar:hover a{
+    color: black;
+}
+
+#anuncio .descricao{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#anuncio .descricao h3{
+    padding: 10px;
+    font-size: 28px;
+    font-family: 'Roboto';
+    font-weight: 300;
+}
+
+#anuncio .descricao p{
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Roboto';
+    font-weight: 300;
+}
+
+#anuncio .comentarios{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.comentarios h3{
+    padding: 10px;
+    font-size: 28px;
+    font-family: 'Roboto';
+    font-weight: 300;
+}
+
+#anuncio .comentarios .comentario{
+    width: 100%;
+}
+
+#anuncio .comentarios .comentario .autor{
+    margin-left: 30px;
+    padding: 10px;
+    font-size: 20px;
+    font-family: 'Roboto';
+    font-weight: 400;
+}
+
+#anuncio .comentarios .comentario .coment{
+    margin-left: 30px;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Roboto';
+    font-weight: 300;
+    border-left: 5px solid #ccc;
+}
+
+.adicionar-comentario {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.add-comentario-textarea {
+    width: 100%;
+    height: 80px;
+    margin: 0;
+}
+
+.adicionar-comentario button {
+    background-color: green;
+    align-self: flex-start;
+    width: 100px;
+}
+
+.titulo-editavel {
+    border: 1px solid gray;
+    border-radius: 9px;
+}
+
+.btn-delete {
+    color: white;
+}
