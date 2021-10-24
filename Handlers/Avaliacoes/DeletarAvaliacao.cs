@@ -55,7 +55,7 @@ namespace ServidorTestes.Handlers.Comentarios
             BaseResponse response = new BaseResponse()
             {
                 Success = true,
-                Message = "Comentário deletado com sucesso!"
+                Message = "Avaliação deletado com sucesso!"
             };
             writer.WriteLine(response.ToJSON());
         }

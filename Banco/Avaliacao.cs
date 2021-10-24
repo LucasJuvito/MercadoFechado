@@ -143,7 +143,8 @@ namespace ServidorTestes.Banco
             command.CommandText = "SELECT pontuacao, comentario, avaliacao.id_venda " +
                 "FROM avaliacao " +
                 "JOIN venda ON avaliacao.id_venda = venda.id_venda " +
-                "WHERE venda.id_anuncio = @idAnuncio";
+                "WHERE venda.id_anuncio = @idAnuncio " +
+                "ORDER BY avaliacao.id_venda DESC";
             command.Parameters.AddWithValue("@idAnuncio", idAnuncio);
 
             using MySqlDataReader reader = command.ExecuteReader();
