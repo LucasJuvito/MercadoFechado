@@ -25,7 +25,8 @@ namespace ServidorTestes.Banco
 
             using MySqlCommand command = connection.CreateCommand();
             command.CommandText = "SELECT id_venda, id_produto, id_anuncio, vendedor, comprador, titulo, venda_hora, pontuacao FROM dados_agrupados_venda " +
-                "WHERE comprador = @idUser";
+                "WHERE comprador = @idUser " +
+                "ORDER BY id_venda DESC";
             command.Parameters.AddWithValue("@idUser", idUser);
 
             using MySqlDataReader reader = command.ExecuteReader();
@@ -59,7 +60,8 @@ namespace ServidorTestes.Banco
 
             using MySqlCommand command = connection.CreateCommand();
             command.CommandText = "SELECT id_venda, id_produto, id_anuncio, vendedor, comprador, titulo, venda_hora, pontuacao FROM dados_agrupados_venda " +
-                "WHERE vendedor = @idUser";
+                "WHERE vendedor = @idUser " +
+                "ORDER BY id_venda DESC";
             command.Parameters.AddWithValue("@idUser", idUser);
 
             using MySqlDataReader reader = command.ExecuteReader();

@@ -95,7 +95,7 @@ CREATE TABLE venda(
     venda_hora DATETIME NOT NULL, 
     vendedor INT NOT NULL,
     comprador INT NOT NULL,
-    valor INT NOT NULL,
+    valor DOUBLE NOT NULL,
     endereco_entrega INT NOT NULL,
     id_anuncio INT,
     FOREIGN KEY (id_anuncio) REFERENCES anuncio(id_anuncio) ON UPDATE CASCADE ON DELETE SET NULL,
