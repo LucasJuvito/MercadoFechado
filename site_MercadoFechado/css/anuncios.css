@@ -159,6 +159,13 @@ section#esp{
     cursor: pointer;
 }
 
+.btn-delete {
+    margin-left: 10px;
+    padding: 2px;
+    border-radius: 5px;
+    background-color: rgb(87, 87, 87);
+}
+
 .btn_comprar a{
     color: white;
 }

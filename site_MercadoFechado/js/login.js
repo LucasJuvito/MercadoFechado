@@ -19,10 +19,11 @@ function TentarLogar() {
     var usuario = document.getElementById("nome_login").value;
     var senha = document.getElementById("senha_login").value;
 
-    ObterToken(usuario, senha,
-        (token) => {
+    LogarUsuario(usuario, senha,
+        (dados) => {
             setCookie("usuario_logado", usuario, 1);
-            setCookie("token_acesso", token, 1);
+            setCookie("token_acesso", dados.Token, 1);
+            setCookie("id_usuario_logado", dados.ID, 1);
             document.location = "../index.html";
         },
         (erro) => {

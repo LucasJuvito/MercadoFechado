@@ -38,6 +38,37 @@ namespace ServidorTestes.Banco
             }
         }
 
+        public static bool CriarPessoaFisica(string login, string senha, string cpf, string nome, DateTime? dataNascimento)
+        {
+            using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+            connection.Open();
+
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "CALL cadastrar_atomico(FALSE, @login, @senha, @cpf, @nome, @nascimento)";
+            command.Parameters.AddWithValue("@login", login);
+            command.Parameters.AddWithValue("@senha", senha);
+            command.Parameters.AddWithValue("@cpf", cpf);
+            command.Parameters.AddWithValue("@nome", nome);
+            command.Parameters.AddWithValue("@nascimento", dataNascimento);
+
+            return command.ExecuteNonQuery() > 0;
+        }
+
+        public static bool CriarPessoaJuridica(string login, string senha, string cnpj, string nomeFantasia)
+        {
+            using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+            connection.Open();
+
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "CALL cadastrar_atomico(TRUE, @login, @senha, @cnpj, @nomeFantasia, NULL)";
+            command.Parameters.AddWithValue("@login", login);
+            command.Parameters.AddWithValue("@senha", senha);
+            command.Parameters.AddWithValue("@cnpj", cnpj);
+            command.Parameters.AddWithValue("@nomeFantasia", nomeFantasia);
+
+            return command.ExecuteNonQuery() > 0;
+        }
+
         public static UsuarioComum BuscarPorID(int id)
         {
             using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);

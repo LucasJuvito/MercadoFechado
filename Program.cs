@@ -34,6 +34,7 @@ namespace ServidorTestes
             api.AddAction("/usuarios/porid", Handlers.Usuarios.BuscarPorID.ProcessContext);
             api.AddAction("/usuarios/porcpf", Handlers.Usuarios.BuscarPorCPF.ProcessContext);
             api.AddAction("/usuarios/criar/pessoafisica", Handlers.Usuarios.CriarPessoaFisica.ProcessContext);
+            api.AddAction("/usuarios/criar/pessoajuridica", Handlers.Usuarios.CriarPessoaJuridica.ProcessContext);
 
             api.AddAction("/categorias/criar", Handlers.Categorias.CriarCategoria.ProcessContext);
             api.AddAction("/categorias/listar", Handlers.Categorias.ListarCategorias.ProcessContext);

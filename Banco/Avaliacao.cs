@@ -39,6 +39,53 @@ namespace ServidorTestes.Banco
             }
         }
 
+        public bool DeletarDoBanco()
+        {
+            try
+            {
+                using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+                connection.Open();
+
+                using MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "DELETE FROM avaliacao WHERE id_venda = @id";
+                command.Parameters.AddWithValue("@id", IDVenda);
+
+                if (command.ExecuteNonQuery() != 1)
+                    return false;
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
+        public static Avaliacao BuscarPorID(long idVenda)
+        {
+            using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+            connection.Open();
+
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT pontuacao, comentario FROM venda WHERE id_venda = @id;";
+            command.Parameters.AddWithValue("@id", idVenda);
+
+            using MySqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+
+            if (!reader.HasRows)
+                return null;
+
+            Avaliacao ret = new Avaliacao()
+            {
+                IDVenda = idVenda,
+                Pontuacao = reader.GetDouble(0),
+                Comentario = reader.GetString(1)
+            };
+            return ret;
+        }
+
         public static bool AtualizarComentario(long idVenda, string comentario)
         {
             try

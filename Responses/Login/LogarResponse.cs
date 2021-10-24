@@ -10,6 +10,7 @@ namespace ServidorTestes.Responses
 {
     class LogarResponse : BaseResponse
     {
+        public long ID { get; set; }
         public string Token { get; set; }
     }
 }

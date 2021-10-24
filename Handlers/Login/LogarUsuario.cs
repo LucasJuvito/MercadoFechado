@@ -41,6 +41,7 @@ namespace ServidorTestes.Handlers.Login
             {
                 Success = true,
                 Message = "Usuário logado com sucesso.",
+                ID = usuario.ID,
                 Token = acesso.Token
             };
             writer.WriteLine(response.ToJSON());

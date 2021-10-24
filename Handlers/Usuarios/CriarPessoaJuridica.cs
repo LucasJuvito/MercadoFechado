@@ -7,12 +7,12 @@ using ServidorTestes.Responses;
 
 namespace ServidorTestes.Handlers.Usuarios
 {
-    class CriarPessoaFisica
+    class CriarPessoaJuridica
     {
         public static void ProcessContext(HttpListenerContext context, StreamWriter writer, StreamReader reader)
         {
             string jsonStr = reader.ReadToEnd();
-            CriarPessoaFisicaRequest request = CriarPessoaFisicaRequest.FromJSON(jsonStr);
+            CriarPessoaJuridicaRequest request = CriarPessoaJuridicaRequest.FromJSON(jsonStr);
             if (request == null || !request.IsValid())
             {
                 writer.WriteLine(new BaseResponse() { Message = "Pedido inválido!" }.ToJSON());
@@ -25,7 +25,7 @@ namespace ServidorTestes.Handlers.Usuarios
                 return;
             }
 
-            if(!UsuarioComum.CriarPessoaFisica(request.Login, request.Senha, request.CPF, request.Nome, request.DataNascimento))
+            if (!UsuarioComum.CriarPessoaJuridica(request.Login, request.Senha, request.CNPJ, request.Nome))
             {
                 writer.WriteLine(new BaseResponse() { Message = "Falha ao criar usuário no BD!" }.ToJSON());
                 return;

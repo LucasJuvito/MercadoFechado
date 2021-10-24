@@ -41,10 +41,8 @@ CREATE TABLE endereco(
 CREATE TABLE usuario_pes_juridica(
     id_pes_juridica INT NOT NULL PRIMARY KEY,
     cnpj VARCHAR(18) NOT NULL UNIQUE,
-    endereco_sede INT NOT NULL UNIQUE,
     nome_fantasia TINYTEXT NOT NULL,
-    FOREIGN KEY (id_pes_juridica) REFERENCES usuario_comum(id_user_comum) ON UPDATE CASCADE,
-    FOREIGN KEY (endereco_sede) REFERENCES endereco(id_endereco) ON UPDATE CASCADE 
+    FOREIGN KEY (id_pes_juridica) REFERENCES usuario_comum(id_user_comum) ON UPDATE CASCADE
 );
 
 CREATE TABLE usuario_pes_fisica(
@@ -185,16 +183,16 @@ INSERT INTO endereco (cep, sigla_estado, cidade, bairro, quadra, numero, id_prop
  VALUES ('69317-302', 'RR', 'Boa Vista', 'Equatorial', 'Rua Antônio Batista de Miranda', '5', 5);
 
  /* Pessoas Jurídicas */
-INSERT INTO usuario_pes_juridica (id_pes_juridica, cnpj, endereco_sede, nome_fantasia)
- VALUES (1, '70.450.542/0001-41', 1, 'Ameizon');
-INSERT INTO usuario_pes_juridica (id_pes_juridica, cnpj, endereco_sede, nome_fantasia)
- VALUES (2, '58.988.745/0001-90', 2, 'Mercado Socialista');
-INSERT INTO usuario_pes_juridica (id_pes_juridica, cnpj, endereco_sede, nome_fantasia)
- VALUES (3, '34.859.857/0001-83', 3, 'Kibum');
-INSERT INTO usuario_pes_juridica (id_pes_juridica, cnpj, endereco_sede, nome_fantasia)
- VALUES (4, '16.780.211/0001-24', 4, 'Locadora MaxFilmes');
-INSERT INTO usuario_pes_juridica (id_pes_juridica, cnpj, endereco_sede, nome_fantasia)
- VALUES (5, '76.259.244/0001-55', 5, 'Loja não suspeita');
+INSERT INTO usuario_pes_juridica (id_pes_juridica, cnpj, nome_fantasia)
+ VALUES (1, '70.450.542/0001-41', 'Ameizon');
+INSERT INTO usuario_pes_juridica (id_pes_juridica, cnpj, nome_fantasia)
+ VALUES (2, '58.988.745/0001-90', 'Mercado Socialista');
+INSERT INTO usuario_pes_juridica (id_pes_juridica, cnpj, nome_fantasia)
+ VALUES (3, '34.859.857/0001-83', 'Kibum');
+INSERT INTO usuario_pes_juridica (id_pes_juridica, cnpj, nome_fantasia)
+ VALUES (4, '16.780.211/0001-24', 'Locadora MaxFilmes');
+INSERT INTO usuario_pes_juridica (id_pes_juridica, cnpj, nome_fantasia)
+ VALUES (5, '76.259.244/0001-55', 'Loja não suspeita');
 
  /* Pessoas Físicas */
 INSERT INTO usuario_pes_fisica (id_pes_fisica, cpf, nome, data_nascimento)

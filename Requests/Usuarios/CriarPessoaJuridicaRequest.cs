@@ -7,28 +7,26 @@ using Newtonsoft.Json;
 
 namespace ServidorTestes.Requests
 {
-    class CriarPessoaFisicaRequest
+    class CriarPessoaJuridicaRequest
     {
-        public string CPF { get; set; }
+        public string CNPJ { get; set; }
         public string Nome { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
-        public DateTime? DataNascimento { get; set; }
 
         public bool IsValid()
         {
             if (Login == null || Login.Length < 1) return false;
             if (Senha == null || Senha.Length < 1) return false;
-            if (DataNascimento == null) return false;
-            if (CPF == null || CPF.Length != 14) return false;
+            if (CNPJ == null || CNPJ.Length != 18) return false;
             if (Nome == null || Nome.Length < 1) return false;
 
             return true;
         }
 
-        public static CriarPessoaFisicaRequest FromJSON(string jsonStr)
+        public static CriarPessoaJuridicaRequest FromJSON(string jsonStr)
         {
-            return JsonConvert.DeserializeObject<CriarPessoaFisicaRequest>(jsonStr);
+            return JsonConvert.DeserializeObject<CriarPessoaJuridicaRequest>(jsonStr);
         }
     }
 }

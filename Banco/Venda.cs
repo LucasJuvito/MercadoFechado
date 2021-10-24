@@ -9,13 +9,13 @@ namespace ServidorTestes.Banco
 {
     class Venda
     {
-        public long ID;
-        public double Valor;
-        public DateTime Data;
-        public long IDAnuncio;
-        public long IDEndereco;
-        public long IDVendedor;
-        public long IDComprador;
+        public long ID { get; set; }
+        public double Valor { get; set; }
+        public DateTime Data { get; set; }
+        public long? IDAnuncio { get; set; }
+        public long IDEndereco { get; set; }
+        public long IDVendedor { get; set; }
+        public long IDComprador { get; set; }
 
         public bool AdicionarAoBanco()
         {
@@ -45,6 +45,34 @@ namespace ServidorTestes.Banco
                 Console.WriteLine(e);
                 return false;
             }
+        }
+
+        public static Venda BuscarPorID(long id)
+        {
+            using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
+            connection.Open();
+
+            using MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT id_anuncio, valor, venda_hora, endereco_entrega, vendedor, comprador FROM venda WHERE id_venda = @id;";
+            command.Parameters.AddWithValue("@id", id);
+
+            using MySqlDataReader reader = command.ExecuteReader();
+            reader.Read();
+
+            if (!reader.HasRows)
+                return null;
+
+            Venda ret = new Venda()
+            {
+                ID = id,
+                IDAnuncio = reader.GetInt64(0),
+                Valor = reader.GetDouble(1),
+                Data = reader.GetDateTime(2),
+                IDEndereco = reader.GetInt64(3),
+                IDVendedor = reader.GetInt64(4),
+                IDComprador = reader.GetInt64(5)
+            };
+            return ret;
         }
 
         public static List<Venda> ListarVendas(long idAnuncio)

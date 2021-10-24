@@ -1,10 +1,22 @@
 const urlParams = new URLSearchParams(window.location.search);
 const idAnuncio = urlParams.get('id_anuncio');
+var idUsuarioLogado = getCookie("id_usuario_logado");
 
-function CriarDivContainer(nomeautor, comentario) {
+function ClicarDeletarComentario(id) {
+    DeletarComentario(getCookie("token_acesso"), id, (resposta) => {
+        alert("Comentário deletado com sucesso!");
+        document.location.reload();
+    });
+}
+
+function CriarDivContainer(idcomentario, idautor, nomeautor, comentario) {
     var divAutor = document.createElement("div");
     divAutor.classList.add("autor");
-    divAutor.innerHTML = nomeautor;
+
+    if(idUsuarioLogado == idautor)
+        divAutor.innerHTML = nomeautor + '<button class="btn-delete" onclick="ClicarDeletarComentario(' + idcomentario + ')">Deletar</button>';
+    else 
+        divAutor.innerHTML = nomeautor;
 
     var divComentario = document.createElement("div");
     divComentario.classList.add("coment");
@@ -20,7 +32,8 @@ function CriarDivContainer(nomeautor, comentario) {
 function ClicarAdicionarComentario() {
     var texto = document.getElementById("texto-comentario").value;
     AdicionarComentario(getCookie("token_acesso"), idAnuncio, texto, (resposta) => {
-        console.log(resposta);
+        alert(resposta.Message);
+        window.location.reload();
     });
     return container;
 }
@@ -47,7 +60,7 @@ ObterComentarios(idAnuncio, (comentarios) => {
     for(var i = 0; i < comentarios.length; i++) {
         var comentario = comentarios[i];
         ObterDadosUsuario(comentario.IDUserComum, (dados) => {
-            var container = CriarDivContainer(dados.Nome, comentario.Descricao);
+            var container = CriarDivContainer(comentario.ID, comentario.IDUserComum, dados.Nome, comentario.Descricao);
             containerComentarios.append(container);
         });
     }
@@ -57,7 +70,7 @@ ObterAvaliacoes(idAnuncio, (avaliacoes) => {
     var containerAvaliacoes = document.getElementById("avaliacoes");
     for(var i = 0; i < avaliacoes.length; i++) {
         var avaliacao = avaliacoes[i];
-        var container = CriarDivContainer(GerarEstrelinhas(avaliacao.Pontuacao), avaliacao.Comentario);
+        var container = CriarDivContainer(0, 0, GerarEstrelinhas(avaliacao.Pontuacao), avaliacao.Comentario);
         containerAvaliacoes.append(container);
     }
 });

@@ -1,4 +1,4 @@
-function ObterToken(usuario, senha, onsuccess, onerror) {
+function LogarUsuario(usuario, senha, onsuccess, onerror) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:1890/login/logar", true);
     xhr.onreadystatechange = function () {
@@ -8,7 +8,7 @@ function ObterToken(usuario, senha, onsuccess, onerror) {
         var data = JSON.parse(this.responseText);
         if (this.status == 200) {
             if(data.Success)
-                onsuccess(data.Token);
+                onsuccess(data);
             else
                 onerror(data);
         }

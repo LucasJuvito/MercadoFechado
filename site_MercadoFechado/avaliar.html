@@ -23,13 +23,27 @@
         <h1>Avalie sua compra</h1> 
         <p> 
           <label for="avaliacao">Avaliação</label>
-          <input id="avaliacao" name="avaliacao" required="required" type="number" step="0.5" min="0" max="5"/>
+          <select id="avaliacao" name="avaliacao" required="required" type="number" step="0.5" min="0" max="5">
+            <option value="0.0">0.0 - Detestável</option>
+            <option value="0.5">0.5 - Péssimo</option>
+            <option value="1.0">1.0 - Ruim</option>
+            <option value="1.5">1.5 - Medíocre</option>
+            <option value="2.0">2.0 - Tolerável</option>
+            <option value="2.5">2.5 - Mediano</option>
+            <option value="3.0">3.0 - Aceitável</option>
+            <option value="3.5">3.5 - Bom</option>
+            <option value="4.0">4.0 - Ótimo</option>
+            <option value="4.5">4.5 - Excelente</option>
+            <option value="5.0">5.0 - Incrível</option>
+          </select>
         </p>
-        
         <p>
-          <input type="submit" value="Concluir" onclick=""/> 
+          <label for="comentario">Comentário</label>
+          <textarea id="texto-comentario" class="add-avaliacao-textarea" type="text"></textarea>
         </p>
-          
+        <p>
+          <input type="submit" value="Concluir" onclick="ClicarAvaliar()"/> 
+        </p>
       </div>
       
 
@@ -38,6 +52,8 @@
   <!-- Linkando fonte do google -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="js/utils.js"></script>
+  <script src="js/api/avaliacoes.js"></script>
+  <script src="js/avaliar.js"></script>
   <script src="js/forcarlogin.js"></script>
 </body>
 </html>

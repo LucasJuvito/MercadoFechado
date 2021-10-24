@@ -70,3 +70,22 @@ function AdicionarComentario(token, idAnuncio, texto, onsuccess, onerror) {
         "Descricao": texto
     }));
 }
+
+function DeletarComentario(token, id, onsuccess, onerror) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:1890/comentarios/deletar", true);
+    xhr.onreadystatechange = function () {
+        if (this.readyState != 4) return;
+
+        if (this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+            onsuccess(data);
+        }
+    };
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Authorization', token);
+    xhr.send(JSON.stringify({
+        "ID" : parseInt(id)
+    }));
+}
