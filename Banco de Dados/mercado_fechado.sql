@@ -273,3 +273,27 @@ INSERT INTO acesso_usuario (token, id_user_comum, data_expiracao) VALUES ('26367
 INSERT INTO acesso_usuario (token, id_user_comum, data_expiracao) VALUES ('5daed7a0c4c24955efac805ae9a227ea', 3, NOW() + INTERVAL 2 HOUR);
 INSERT INTO acesso_usuario (token, id_user_comum, data_expiracao) VALUES ('4217696c91eddd16d83bc5c51377f84b', 4, NOW() + INTERVAL 2 HOUR);
 INSERT INTO acesso_usuario (token, id_user_comum, data_expiracao) VALUES ('cf9ea7177a0d5ada66b42af6b3b1136f', 5, NOW() + INTERVAL 2 HOUR);
+
+/* Procedures */
+DELIMITER $$
+CREATE PROCEDURE cadastrar_atomico (IN ehempresa BOOLEAN, IN in_login TEXT, IN in_senha TEXT, IN identificador TEXT, IN nome TEXT, IN data_nascimento TIMESTAMP)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+    
+    START TRANSACTION;
+    IF ehempresa THEN
+        INSERT INTO usuario_comum (login, senha) VALUES (in_login, in_senha);
+        SET @insertedID = LAST_INSERT_ID();
+        INSERT INTO usuario_pes_juridica (id_pes_juridica, cnpj, nome_fantasia) VALUES (@insertedID, identificador, nome);
+    ELSE
+        INSERT INTO usuario_comum (login, senha) VALUES (in_login, in_senha);
+        SET @insertedID = LAST_INSERT_ID();
+        INSERT INTO usuario_pes_fisica (id_pes_fisica, cpf, data_nascimento, nome) VALUES (@insertedID, identificador, data_nascimento, nome);
+    END IF;
+    COMMIT;
+END $$
+DELIMITER ;
