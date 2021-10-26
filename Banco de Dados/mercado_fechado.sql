@@ -9,7 +9,8 @@ USE mercado_fechado;
 CREATE TABLE usuario_comum(
     id_user_comum INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     login VARCHAR(50) NOT NULL UNIQUE,
-    senha TINYTEXT NOT NULL
+    senha TINYTEXT NOT NULL,
+    saldo DOUBLE DEFAULT 500.0 NOT NULL CHECK(saldo >= 0)
 );
 
 CREATE TABLE acesso_usuario (
@@ -295,5 +296,31 @@ BEGIN
         INSERT INTO usuario_pes_fisica (id_pes_fisica, cpf, data_nascimento, nome) VALUES (@insertedID, identificador, data_nascimento, nome);
     END IF;
     COMMIT;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE criar_venda (IN vendedor BIGINT, IN comprador BIGINT, IN valor DOUBLE, IN endereco_entrega INT, IN id_anuncio INT)
+BEGIN
+    DECLARE saldo_comprador INT DEFAULT 0;
+    DECLARE resultado INT DEFAULT 0;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+    
+    START TRANSACTION;
+    SELECT saldo INTO saldo_comprador FROM usuario_comum WHERE id_user_comum = comprador;
+    IF saldo_comprador >= valor THEN
+        UPDATE usuario_comum SET saldo = saldo - valor WHERE id_user_comum = comprador;
+        UPDATE usuario_comum SET saldo = saldo + valor WHERE id_user_comum = vendedor;
+        INSERT INTO venda (venda_hora, vendedor, comprador, valor, endereco_entrega, id_anuncio) VALUES (NOW(), vendedor, comprador, valor, endereco_entrega, id_anuncio);
+        SET resultado = 1;
+    ELSE
+        SET resultado = -1;
+    END IF;
+    COMMIT;
+    SELECT resultado;
 END $$
 DELIMITER ;
