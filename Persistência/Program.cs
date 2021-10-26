@@ -20,6 +20,7 @@ namespace ServidorTestes
             APIServer api = new APIServer(1890);
 
             api.AddAction("/usuarios/me", Handlers.Usuarios.BuscarLogado.ProcessContext);
+            api.AddAction("/usuarios/saldo", Handlers.Usuarios.BuscarSaldo.ProcessContext);
             api.AddAction("/usuarios/porid", Handlers.Usuarios.BuscarPorID.ProcessContext);
             api.AddAction("/usuarios/porcpf", Handlers.Usuarios.BuscarPorCPF.ProcessContext);
             api.AddAction("/usuarios/criar/pessoafisica", Handlers.Usuarios.CriarPessoaFisica.ProcessContext);

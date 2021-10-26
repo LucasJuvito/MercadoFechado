@@ -12,6 +12,7 @@ namespace ServidorTestes.Banco
         public long ID { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
+        public double Saldo { get; set; }
 
         public bool AdicionarAoBanco()
         {
@@ -21,7 +22,7 @@ namespace ServidorTestes.Banco
                 connection.Open();
 
                 using MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO usuario_comum (login, senha) VALUES (@login, @senha);";
+                command.CommandText = "INSERT INTO usuario_comum (login, senha, saldo) VALUES (@login, @senha, 0);";
                 command.Parameters.AddWithValue("@login", Login);
                 command.Parameters.AddWithValue("@senha", Senha);
 
@@ -69,13 +70,13 @@ namespace ServidorTestes.Banco
             return command.ExecuteNonQuery() > 0;
         }
 
-        public static UsuarioComum BuscarPorID(int id)
+        public static UsuarioComum BuscarPorID(long id)
         {
             using MySqlConnection connection = new MySqlConnection(Global.DBConnectionBuilder.ConnectionString);
             connection.Open();
 
             using MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT login, senha FROM usuario_comum WHERE id_user_comum = @id;";
+            command.CommandText = "SELECT login, senha, saldo FROM usuario_comum WHERE id_user_comum = @id;";
             command.Parameters.AddWithValue("@id", id);
 
             using MySqlDataReader reader = command.ExecuteReader();
@@ -88,7 +89,8 @@ namespace ServidorTestes.Banco
             {
                 ID = id,
                 Login = reader.GetString(0),
-                Senha = reader.GetString(1)
+                Senha = reader.GetString(1),
+                Saldo = reader.GetDouble(2)
             };
             return ret;
         }
@@ -99,7 +101,7 @@ namespace ServidorTestes.Banco
             connection.Open();
 
             using MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT id_user_comum, senha FROM usuario_comum WHERE login = @login;";
+            command.CommandText = "SELECT id_user_comum, senha, saldo FROM usuario_comum WHERE login = @login;";
             command.Parameters.AddWithValue("@login", login);
 
             using MySqlDataReader reader = command.ExecuteReader();
@@ -112,7 +114,8 @@ namespace ServidorTestes.Banco
             {
                 ID = reader.GetInt64(0),
                 Login = login,
-                Senha = reader.GetString(1)
+                Senha = reader.GetString(1),
+                Saldo = reader.GetDouble(2)
             };
             return ret;
         }
