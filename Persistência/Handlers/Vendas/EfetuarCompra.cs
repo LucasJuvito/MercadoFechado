@@ -28,10 +28,29 @@ namespace ServidorTestes.Handlers.Vendas
                 return;
             }
 
+            UsuarioComum usuarioComum = UsuarioComum.BuscarPorID(usuarioLogado.IDUsuarioComum);
+            if(usuarioComum == null)
+            {
+                writer.WriteLine(new BaseResponse() { Message = "Usuário não encontrado!" }.ToJSON());
+                return;
+            }
+
             Anuncio anuncio = Anuncio.BuscarPorID(request.IDAnuncio.Value);
             if(anuncio == null)
             {
                 writer.WriteLine(new BaseResponse() { Message = "Anúncio não encontrado!" }.ToJSON());
+                return;
+            }
+
+            if(anuncio.IDVendedor == usuarioComum.ID)
+            {
+                writer.WriteLine(new BaseResponse() { Message = "Você não pode comprar de si mesmo!" }.ToJSON());
+                return;
+            }
+
+            if (usuarioComum.Saldo < anuncio.Valor)
+            {
+                writer.WriteLine(new BaseResponse() { Message = "Saldo insuficiente!" }.ToJSON());
                 return;
             }
 
@@ -52,18 +71,20 @@ namespace ServidorTestes.Handlers.Vendas
                 IDAnuncio = anuncio.ID
             };
 
-            if(!venda.AdicionarAoBanco())
+            if (!venda.AdicionarAoBanco())
             {
-                writer.WriteLine(new BaseResponse() { Message = "Não foi possível adicionar venda ao BD!" }.ToJSON());
+                writer.WriteLine(new BaseResponse() { Message = "Não foi possível adicionar ao banco!" }.ToJSON());
                 return;
-            }
+            }            
 
-            CriarVendaResponse response = new CriarVendaResponse() {
+            CriarVendaResponse response = new CriarVendaResponse()
+            {
                 Venda = venda,
                 Success = true,
                 Message = "Venda adicionado com sucesso!"
             };
             writer.WriteLine(response.ToJSON());
+            return;
         }
     }
 }

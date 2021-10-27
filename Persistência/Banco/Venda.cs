@@ -17,6 +17,7 @@ namespace ServidorTestes.Banco
         public long IDVendedor { get; set; }
         public long IDComprador { get; set; }
 
+        //criar_venda (4, 1, 50.0, 1, 1);
         public bool AdicionarAoBanco()
         {
             try
@@ -33,10 +34,7 @@ namespace ServidorTestes.Banco
                 command.Parameters.AddWithValue("@comprador", IDComprador);
                 command.Parameters.AddWithValue("@endereco_entrega", IDEndereco);
 
-                if (command.ExecuteNonQuery() != 1)
-                    return false;
-
-                ID = command.LastInsertedId;
+                command.ExecuteNonQuery();
                 return true;
             }
             catch (Exception e)

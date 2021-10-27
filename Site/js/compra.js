@@ -14,7 +14,7 @@ function SelecionarDiv(id) {
 
 function FinalizarCompra() {
     EfetuarCompra(getCookie("token_acesso"), idAnuncio, idSelecionado, (resultado) => {
-        alert("Sucesso!");
+        alert(resultado.Message);
         document.location = "./minhas-compras.html";
     });
 }
