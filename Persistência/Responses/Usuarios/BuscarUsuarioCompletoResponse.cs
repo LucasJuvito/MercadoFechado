@@ -10,6 +10,8 @@ namespace ServidorTestes.Responses
 {
     class BuscarUsuarioCompletoResponse : BaseResponse
     {
+        public string Login { get; set; }
+        public double Saldo { get; set; }
         public string Nome { get; set; }
         public int TipoPessoa { get; set; }
         public string Identificador { get; set; }

@@ -10,7 +10,7 @@ CREATE TABLE usuario_comum(
     id_user_comum INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     login VARCHAR(50) NOT NULL UNIQUE,
     senha TINYTEXT NOT NULL,
-    saldo DOUBLE DEFAULT 500.0 NOT NULL CHECK(saldo >= 0)
+    saldo DOUBLE DEFAULT 10000.0 NOT NULL CHECK(saldo >= 0)
 );
 
 CREATE TABLE acesso_usuario (

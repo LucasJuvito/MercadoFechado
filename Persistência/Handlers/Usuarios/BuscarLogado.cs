@@ -19,11 +19,20 @@ namespace ServidorTestes.Handlers.Usuarios
                 return;
             }
 
+            UsuarioComum usuarioComum = UsuarioComum.BuscarPorID(usuarioLogado.IDUsuarioComum);
+            if (usuarioComum == null)
+            {
+                writer.WriteLine(new BaseResponse() { Message = "Usuário não encontrado!" }.ToJSON());
+                return;
+            }
+
             PessoaFisica pessoa = PessoaFisica.BuscarPeloID(usuarioLogado.IDUsuarioComum);
             if (pessoa != null)
             {
                 BuscarUsuarioCompletoResponse response = new BuscarUsuarioCompletoResponse()
                 {
+                    Login = usuarioComum.Login,
+                    Saldo = usuarioComum.Saldo,
                     Nome = pessoa.Nome,
                     TipoPessoa = 1,
                     Identificador = pessoa.CPF,
@@ -39,6 +48,8 @@ namespace ServidorTestes.Handlers.Usuarios
             {
                 BuscarUsuarioCompletoResponse response = new BuscarUsuarioCompletoResponse()
                 {
+                    Login = usuarioComum.Login,
+                    Saldo = usuarioComum.Saldo,
                     Nome = pessoaJuridica.NomeFantasia,
                     TipoPessoa = 2,
                     Identificador = pessoaJuridica.CNPJ,

@@ -25,8 +25,7 @@ namespace ServidorTestes.Banco
                 connection.Open();
 
                 using MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO venda (venda_hora, vendedor, comprador, valor, endereco_entrega, id_anuncio) " +
-                    "VALUES (@venda_hora, @vendedor, @comprador, @valor, @endereco_entrega, @id_anuncio);";
+                command.CommandText = "CALL criar_venda (@vendedor, @comprador, @valor, @endereco_entrega, @id_anuncio);";
                 command.Parameters.AddWithValue("@valor", Valor);
                 command.Parameters.AddWithValue("@venda_hora", Data);
                 command.Parameters.AddWithValue("@vendedor", IDVendedor);
